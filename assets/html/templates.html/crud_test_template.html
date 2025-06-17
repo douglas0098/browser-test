@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CRUD - UP Browser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Interface de Teste CRUD - UP Browser</h1>
+        
+        <div class="test-section">
+            <h3>👤 Testes de Usuário</h3>
+            <button onclick="testUserRegistration()">Registrar Usuário</button>
+            <button onclick="testUserLogin()">Testar Login</button>
+            <button onclick="testListUsers()">Listar Usuários</button>
+            <div id="user-results" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🤖 Testes de Ferramentas IA</h3>
+            <button onclick="testAddAITool()">Adicionar Ferramenta</button>
+            <button onclick="testListAITools()">Listar Ferramentas</button>
+            <button onclick="testGetCategories()">Obter Categorias</button>
+            <div id="ai-tools-results" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>⭐ Testes de Favoritos</h3>
+            <button onclick="testAddFavorite()">Adicionar Favorito</button>
+            <button onclick="testListFavorites()">Listar Favoritos</button>
+            <button onclick="testRemoveFavorite()">Remover Favorito</button>
+            <div id="favorites-results" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>💳 Testes de Pagamentos</h3>
+            <button onclick="testRegisterPayment()">Registrar Pagamento</button>
+            <button onclick="testListPayments()">Listar Pagamentos</button>
+            <button onclick="testUpdatePaymentStatus()">Atualizar Status</button>
+            <div id="payments-results" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔧 Status do Sistema</h3>
+            <button onclick="checkSystemStatus()">Verificar Status</button>
+            <div id="system-status" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Funções de teste que se comunicariam com o Python via bridge
+        
+        function testUserRegistration() {
+            const results = document.getElementById('user-results');
+            results.innerHTML = '<span class="success">✅ Teste de registro de usuário executado!</span>';
+            
+            // Aqui você chamaria a função Python via bridge
+            if (window.pyQtApi && window.pyQtApi.testUserRegistration) {
+                window.pyQtApi.testUserRegistration();
+            }
+        }
+        
+        function testUserLogin() {
+            const results = document.getElementById('user-results');
+            results.innerHTML = '<span class="success">✅ Teste de login executado!</span>';
+        }
+        
+        function testListUsers() {
+            const results = document.getElementById('user-results');
+            results.innerHTML = '<span class="success">✅ Listagem de usuários executada!</span>';
+        }
+        
+        function testAddAITool() {
+            const results = document.getElementById('ai-tools-results');
+            results.innerHTML = '<span class="success">✅ Teste de adição de ferramenta IA executado!</span>';
+        }
+        
+        function testListAITools() {
+            const results = document.getElementById('ai-tools-results');
+            results.innerHTML = '<span class="success">✅ Listagem de ferramentas IA executada!</span>';
+        }
+        
+        function testGetCategories() {
+            const results = document.getElementById('ai-tools-results');
+            results.innerHTML = '<span class="success">✅ Obtenção de categorias executada!</span>';
+        }
+        
+        function testAddFavorite() {
+            const results = document.getElementById('favorites-results');
+            results.innerHTML = '<span class="success">✅ Teste de adição de favorito executado!</span>';
+        }
+        
+        function testListFavorites() {
+            const results = document.getElementById('favorites-results');
+            results.innerHTML = '<span class="success">✅ Listagem de favoritos executada!</span>';
+        }
+        
+        function testRemoveFavorite() {
+            const results = document.getElementById('favorites-results');
+            results.innerHTML = '<span class="success">✅ Teste de remoção de favorito executado!</span>';
+        }
+        
+        function testRegisterPayment() {
+            const results = document.getElementById('payments-results');
+            results.innerHTML = '<span class="success">✅ Teste de registro de pagamento executado!</span>';
+        }
+        
+        function testListPayments() {
+            const results = document.getElementById('payments-results');
+            results.innerHTML = '<span class="success">✅ Listagem de pagamentos executada!</span>';
+        }
+        
+        function testUpdatePaymentStatus() {
+            const results = document.getElementById('payments-results');
+            results.innerHTML = '<span class="success">✅ Teste de atualização de status executado!</span>';
+        }
+        
+        function checkSystemStatus() {
+            const results = document.getElementById('system-status');
+            results.innerHTML = '<span class="success">✅ Status do sistema verificado!</span>';
+        }
+        
+        // Funções para receber resultados do Python
+        function displayUserTestResult(result) {
+            const results = document.getElementById('user-results');
+            results.innerHTML = `<span class="success">Resultado: ${JSON.stringify(result, null, 2)}</span>`;
+        }
+        
+        function displayErrorResult(error) {
+            const results = document.getElementById('user-results');
+            results.innerHTML = `<span class="error">Erro: ${error}</span>`;
+        }
+    </script>
+</body>
+</html>

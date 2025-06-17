@@ -1,0 +1,190 @@
+/* Estilos para o formulário de cartão de crédito */
+.cartao-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.mercadopago-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.mp-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 40px;
+    background-color: white;
+}
+
+input.mp-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 40px;
+    background-color: white;
+}
+
+.card-payment-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.payment-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #009ee3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.payment-button:hover {
+    background-color: #007eb9;
+}
+
+.payment-button:disabled {
+    background-color: #b9b9b9;
+    cursor: not-allowed;
+}
+
+.secure-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.secure-icon {
+    color: #009ee3;
+}
+
+.payment-cards {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card-logo {
+    height: 25px;
+    opacity: 0.8;
+}
+
+
+.payment-status.success {
+    background-color: #e6f7ee;
+    color: #0a6634;
+    border: 1px solid #9ddfc8;
+}
+
+.payment-status.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+.payment-status-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.payment-status-message {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.payment-status-detail {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* Estilos para seleção de tipo de cartão */
+.card-type-selection {
+    margin-bottom: 20px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-option input[type="radio"] {
+    margin: 0;
+}
+
+.radio-option label {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Estilos para a opção de assinatura */
+.subscription-option {
+    background-color: #f1f8fd;
+    border: 1px solid #cce5ff;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.checkbox-container label {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.subscription-details {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #a0c5e8;
+}
+
+.subscription-details p {
+    margin: 8px 0;
+    color: #195888;
+    font-size: 14px;
+}

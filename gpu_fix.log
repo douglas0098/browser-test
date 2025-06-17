@@ -1,0 +1,25 @@
+2025-05-20 15:46:45,804 - INFO - ===============================================
+2025-05-20 15:46:45,804 - INFO - Iniciando script de correção de problemas de placa gráfica
+2025-05-20 15:46:45,923 - INFO - Sistema operacional: Windows 11
+2025-05-20 15:46:46,373 - INFO - GPU detectada: Intel(R) UHD Graphics
+2025-05-20 15:46:46,373 - INFO - GPU detectada: intel - Intel(R) UHD Graphics
+2025-05-20 15:46:46,374 - INFO - Iniciando correção de GPU intel no Windows
+2025-05-20 15:46:46,375 - INFO - Diretório temporário criado: C:\Users\dougl\AppData\Local\Temp\tmpssw69m0r
+2025-05-20 15:46:46,376 - INFO - Limpando cache do DirectX...
+2025-05-20 15:46:46,376 - INFO - Redefinindo configurações de driver de vídeo
+2025-05-20 15:46:46,376 - INFO - Verificando DirectX...
+2025-05-20 15:46:46,377 - INFO - Executando comando: dxdiag /t C:\Users\dougl\AppData\Local\Temp\tmpssw69m0r\dxdiag.txt
+2025-05-20 15:46:56,261 - INFO - Verificando relatórios de erro relacionados à GPU...
+2025-05-20 15:46:56,262 - INFO - Corrigindo registros do DirectX...
+2025-05-20 15:46:56,264 - INFO - Executando comando: reg delete "HKCU\Software\Microsoft\DirectX" /f
+2025-05-20 15:46:56,316 - INFO - Executando comando: reg delete "HKLM\SOFTWARE\Microsoft\DirectX" /f
+2025-05-20 15:46:56,356 - INFO - Executando verificação do sistema...
+2025-05-20 15:46:56,356 - INFO - Executando comando: sfc /scannow
+2025-05-20 15:48:24,595 - INFO - Limpando arquivos temporários...
+2025-05-20 15:48:24,826 - ERROR - Erro ao remover diretório temporário: [WinError 2] O sistema não pode encontrar o arquivo especificado: 'C:\\Users\\dougl\\AppData\\Local\\Temp\\tmpssw69m0r'
+2025-05-20 15:48:24,826 - INFO - Correção de GPU no Windows concluída
+2025-05-20 15:48:24,827 - INFO - ===============================================
+2025-05-20 15:48:24,828 - INFO - Script de correção concluído com sucesso.
+2025-05-20 15:48:24,828 - INFO - Recomendamos reiniciar o computador para aplicar todas as alterações.
+2025-05-20 15:52:15,380 - INFO - Reinicialização adiada. Recomendamos reiniciar manualmente quando conveniente.
+2025-05-20 15:52:15,381 - INFO - ===============================================

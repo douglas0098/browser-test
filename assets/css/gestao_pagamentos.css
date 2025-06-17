@@ -1,0 +1,516 @@
+/* Gestão de Pagamentos - CSS */
+#gestao_pagamentos {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+#gestao_pagamentos h3 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Estatísticas */
+.payment-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.stat-number {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-count {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Filtros */
+.admin-payment-filters {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.export-button, .refresh-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.export-button {
+    background-color: #27ae60;
+    color: white;
+}
+
+.export-button:hover {
+    background-color: #229954;
+}
+
+.refresh-button {
+    background-color: #3498db;
+    color: white;
+}
+
+.refresh-button:hover {
+    background-color: #2980b9;
+}
+
+/* Tabela de pagamentos */
+.admin-payments-table-container {
+    background: white;
+    border-radius: 8px;
+    overflow-x: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.admin-payments-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-payments-table thead th {
+    background-color: #34495e;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.admin-payments-table tbody tr {
+    transition: all 0.3s;
+}
+
+.admin-payments-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.admin-payments-table tbody tr:hover {
+    background-color: #e8f4f8;
+    transform: scale(1.01);
+}
+
+.admin-payments-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Informações do usuário */
+.user-payment-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.user-details-small {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name-small {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.user-email-small {
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+/* Valor do pagamento */
+.payment-value {
+    font-weight: bold;
+    color: #27ae60;
+    font-size: 16px;
+}
+
+/* Métodos de pagamento */
+.payment-method {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.payment-method.pix {
+    background-color: #e8f5e8;
+    color: #27ae60;
+}
+
+.payment-method.boleto {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.payment-method.credit, .payment-method.debit {
+    background-color: #cce7ff;
+    color: #0066cc;
+}
+
+/* Status dos pagamentos */
+.admin-payment-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.admin-payment-status.confirmed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.admin-payment-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.admin-payment-status.failed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.admin-payment-status.refunded {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.admin-payment-status.cancelled {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+/* Botões de ação */
+.admin-action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.admin-action-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-action-btn.view {
+    background-color: #3498db;
+    color: white;
+}
+
+.admin-action-btn.approve {
+    background-color: #27ae60;
+    color: white;
+}
+
+.admin-action-btn.reject {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.admin-action-btn.refund {
+    background-color: #f39c12;
+    color: white;
+}
+
+.admin-action-btn.receipt {
+    background-color: #9b59b6;
+    color: white;
+}
+
+.admin-action-btn.retry {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.admin-action-btn.contact {
+    background-color: #6c757d;
+    color: white;
+}
+
+.admin-action-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Paginação */
+.admin-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.page-btn:hover {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.page-info {
+    margin: 0 15px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Modal de detalhes */
+.payment-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.payment-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.payment-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-item label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.detail-item span {
+    color: #34495e;
+    font-size: 14px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    border-top: 1px solid #ecf0f1;
+    padding-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.modal-btn.approve {
+    background-color: #27ae60;
+    color: white;
+}
+
+.modal-btn.refund {
+    background-color: #f39c12;
+    color: white;
+}
+
+.modal-btn.reject {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.modal-btn.cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .filter-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .payment-stats {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .payment-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-payments-table th:nth-child(2),
+    .admin-payments-table td:nth-child(2),
+    .admin-payments-table th:nth-child(5),
+    .admin-payments-table td:nth-child(5) {
+        display: none;
+    }
+    
+    .payment-modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+    
+    .modal-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* Animações de loading */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Efeitos de hover melhorados */
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Indicadores visuais */
+.urgent {
+    position: relative;
+}
+
+.urgent::before {
+    content: "!";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}

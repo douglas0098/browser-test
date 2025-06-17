@@ -1,0 +1,144 @@
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🔄 Página de registro carregada");
+    initRegisterPage();
+});
+
+function initRegisterPage() {
+    const registerForm = document.getElementById('registerForm');
+    
+    if (registerForm) {
+        registerForm.addEventListener('submit', handleRegister);
+        console.log("✅ Event listener do registro adicionado");
+    }
+}
+
+function handleRegister(event) {
+    event.preventDefault();
+    
+    // 📝 Capturar TODOS os campos
+    const name = document.getElementById('name').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('ia-password').value;
+    const confirmPassword = document.getElementById('ia-confirm-password').value;
+    const cpf = document.getElementById('cpf').value.trim();
+    const phone = document.getElementById('telefone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    
+    console.log("📝 Dados capturados:", {
+        name, username, email, phone, cpf: cpf ? "***" : "vazio"
+    });
+    
+    // ✅ Validações no frontend
+    if (!name) {
+        showError("Nome completo é obrigatório!");
+        return;
+    }
+    
+    if (!username) {
+        showError("Nome de usuário é obrigatório!");
+        return;
+    }
+    
+    if (!password) {
+        showError("Senha é obrigatória!");
+        return;
+    }
+    
+    if (!confirmPassword) {
+        showError("Confirmação de senha é obrigatória!");
+        return;
+    }
+    
+    if (!phone) {
+        showError("Telefone é obrigatório!");
+        return;
+    }
+    
+    if (!email) {
+        showError("Email é obrigatório!");
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showError("As senhas não coincidem!");
+        return;
+    }
+    
+    if (password.length < 6) {
+        showError("Senha deve ter pelo menos 6 caracteres!");
+        return;
+    }
+    
+    if (!isValidEmail(email)) {
+        showError("Digite um email válido!");
+        return;
+    }
+    
+    if (!isValidPhone(phone)) {
+        showError("Digite um telefone válido! Ex: (11) 99999-9999");
+        return;
+    }
+    
+    // 🔄 Desabilitar botão durante processo
+    const submitBtn = document.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Registrando...";
+    
+    // 🚀 Aguardar ponte estar pronta
+    if (window.UnifiedBridge && window.UnifiedBridge.isReady()) {
+        // Ponte já está pronta
+        window.UnifiedBridge.register(username, password, email, name, phone, cpf);
+    } else {
+        // Aguardar ponte ficar pronta
+        document.addEventListener('bridgeReady', function() {
+            window.UnifiedBridge.register(username, password, email, name, phone, cpf);
+        });
+    }
+}
+
+// 🔧 Funções de validação
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+    // Remove caracteres não numéricos
+    const cleanPhone = phone.replace(/\D/g, '');
+    // Telefone brasileiro: 10 ou 11 dígitos
+    return cleanPhone.length >= 10 && cleanPhone.length <= 11;
+}
+
+function showError(message) {
+    const errorElement = document.getElementById('errorMessage');
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+        
+        setTimeout(() => {
+            errorElement.style.display = "none";
+        }, 5000);
+    }
+}
+
+function resetRegisterButton() {
+    const submitBtn = document.querySelector('button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Registrar";
+    }
+}
+
+// 📥 Callback para sucesso (chamado pelo Python)
+function registerResult(success, message) {
+    console.log("📥 Resultado do registro:", {success, message});
+    
+    resetRegisterButton();
+    
+    if (success) {
+        alert("Registro realizado com sucesso! Você será redirecionado para a página de login.");
+        goToLogin();
+    } else {
+        showError(message);
+    }
+}

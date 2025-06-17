@@ -1,0 +1,51 @@
+{
+    "pt_BR": {
+      "browser_title": "UP Browser",
+      "new_tab": "Nova Aba",
+      "settings": "Configurações",
+      "notifications": "Notificações",
+      "rewards": "Recompensas",
+      "language": "Idioma",
+      "dark_mode": "Modo Escuro",
+      "exit": "Sair",
+      "menu": "MENU",
+      "search_placeholder": "Pesquisar ou digitar um URL"
+    },
+    "pt_PT": {
+      "browser_title": "UP Browser",
+      "new_tab": "Novo Separador",
+      "settings": "Definições",
+      "notifications": "Notificações",
+      "rewards": "Recompensas",
+      "language": "Idioma",
+      "dark_mode": "Modo Escuro",
+      "exit": "Sair",
+      "menu": "MENU",
+      "search_placeholder": "Pesquisar ou digitar um URL"
+    },
+    "en": {
+      "browser_title": "UP Browser",
+      "new_tab": "New Tab",
+      "settings": "Settings",
+      "notifications": "Notifications",
+      "rewards": "Rewards",
+      "language": "Language",
+      "dark_mode": "Dark Mode",
+      "exit": "Exit",
+      "menu": "MENU",
+      "search_placeholder": "Search or type URL"
+    },
+    "es": {
+      "browser_title": "UP Browser",
+      "new_tab": "Nueva Pestaña",
+      "settings": "Configuración",
+      "notifications": "Notificaciones",
+      "rewards": "Recompensas",
+      "language": "Idioma",
+      "dark_mode": "Modo Oscuro",
+      "exit": "Salir",
+      "menu": "MENÚ",
+      "search_placeholder": "Buscar o escribir URL"
+    }
+  }
+  

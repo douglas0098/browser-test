@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css/cadastro.css">
+    <title>Cadastro</title>
+    
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Cadastro</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Senha">
+        <input type="password" id="confirm-password" placeholder="Confirmar Senha">
+        <button onclick="register()">Cadastrar</button>
+        <p id="error-message" style="color: red; display: none;"></p>
+        <div id="login-link">
+            <a href="#" onclick="backToLogin()">Já possui conta? Faça login</a>
+        </div>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Validação básica
+            if (!username || !email || !password || !confirmPassword) {
+                document.getElementById("error-message").textContent = "Preencha todos os campos!";
+                document.getElementById("error-message").style.display = "block";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById("error-message").textContent = "As senhas não coincidem!";
+                document.getElementById("error-message").style.display = "block";
+                return;
+            }
+
+            // Tentar se comunicar com o Python através da ponte JavaScript
+            try {
+                window.pyQtApi.registerUser(username, password, email);
+            } catch (e) {
+                console.error("Erro ao comunicar com o aplicativo Python:", e);
+                document.getElementById("error-message").textContent = "Erro ao tentar realizar o cadastro.";
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+
+        function backToLogin() {
+            try {
+                window.pyQtApi.openLoginPage();
+            } catch (e) {
+                console.error("Erro ao comunicar com o aplicativo Python:", e);
+                window.location.href = "login.html";
+            }
+        }
+
+        // Função chamada pelo Python quando o registro for processado
+        function registerResult(success, message) {
+            if (success) {
+                alert("Cadastro realizado com sucesso! Você será redirecionado para a página de login.");
+                backToLogin();
+            } else {
+                document.getElementById("error-message").textContent = message;
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1623 @@
+/* Resetando algumas propriedades para um estilo limpo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Layout principal */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.container_painel{
+    display: flex;
+    height: 180vh;
+}
+
+/* Sidebar */
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #2c3e50;
+}
+
+/* CORREÇÃO: Remover pontos da lista */
+.menu {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
+.menu li {
+    margin-bottom: 20px;
+    padding-right: 10px;
+    /* NOVO: Remover qualquer estilo de lista */
+    list-style: none;
+}
+
+/* CORREÇÃO: Ajustar botões para mostrar texto completo */
+.menu button {
+    width: 100%;
+    padding: 12px 10px; /* Aumentar padding vertical */
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    /* NOVO: Permitir quebra de linha e altura automática */
+    white-space: normal;
+    word-wrap: break-word;
+    height: auto;
+    min-height: 40px;
+    line-height: 1.3;
+    text-align: center;
+    /* REMOVER: text-overflow: ellipsis e overflow: hidden */
+}
+
+.menu button:hover {
+    background-color: #2980b9; 
+}
+
+/* Estilização da barra de rolagem para navegadores WebKit */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #2c3e50;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #2980b9;
+}
+
+/* Ajustar o conteúdo principal */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    overflow-y: auto;
+    margin-left: 200px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* NOVO: Garantir que não há pontos em nenhum lugar */
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li::before {
+    content: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 50vh;
+        position: relative;
+        z-index: auto;
+    }
+    
+    .content {
+        margin-left: 0;
+        height: auto;
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+    
+    .container {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+    
+    .menu button {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+}
+
+/* Scroll suave */
+.sidebar {
+    scroll-behavior: smooth;
+}
+
+/* Indicadores de scroll sutis */
+.sidebar::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(transparent, #2c3e50);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Fim Sidebar */
+
+
+/* Área de conteúdo */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    overflow-y: auto;
+}
+
+/* Seções */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+h4 {
+    margin: 15px 0;
+    font-size: 18px;
+    color: #34495e;
+}
+
+h5 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #34495e;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[readonly] {
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.clear-button {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+}
+
+.clear-button:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos para a seção de Usuários */
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.search-button {
+    min-width: 100px;
+}
+
+.user-table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.user-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.status.active {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.status.inactive {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.action-button {
+    padding: 6px 12px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.action-button.edit {
+    background-color: #3498db;
+}
+
+.action-button.delete {
+    background-color: #e74c3c;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.add-button {
+    background-color: #2ecc71;
+}
+
+.add-button:hover {
+    background-color: #27ae60;
+}
+
+.save-button {
+    background-color: #3498db;
+}
+
+/* Modal para edição de usuário */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    max-width: 500px;
+}
+
+.close-modal {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.cancel-button {
+    background-color: #95a5a6;
+}
+
+.cancel-button:hover {
+    background-color: #7f8c8d;
+}
+
+/* Estilos para a seção de Pagamentos */
+.payment-options {
+    margin-bottom: 30px;
+}
+
+.payment-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.payment-tab {
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.payment-tab.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.payment-tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 0 5px 5px 5px;
+}
+
+.payment-tab-content.active {
+    display: block;
+}
+
+/* Estilos para PIX */
+.pix-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.pix-qrcode {
+    flex: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.qrcode-box {
+    width: 200px;
+    height: 200px;
+    background-color: #f4f4f4;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+}
+
+.qrcode-instruction {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.pix-info {
+    flex: 1;
+}
+
+.pix-field {
+    margin-bottom: 15px;
+}
+
+.copy-field {
+    display: flex;
+}
+
+.copy-field input {
+    border-radius: 5px 0 0 5px;
+    margin-bottom: 0;
+}
+
+.copy-button {
+    border-radius: 0 5px 5px 0;
+    background-color: #95a5a6;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Estilos para Boleto */
+.boleto-container {
+    margin-bottom: 20px;
+}
+
+.boleto-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.download-button, .email-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+}
+
+.download-icon, .email-icon {
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Histórico de pagamentos */
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.payment-table th, .payment-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.payment-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.payment-status.confirmed {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.payment-status.pending {
+    background-color: #f39c12;
+    color: white;
+}
+
+.payment-status.failed {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.payment-instructions ol {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.payment-instructions li {
+    margin-bottom: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .pix-container {
+        flex-direction: column;
+    }
+    
+    .pix-qrcode {
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+    
+    .modal-content {
+        width: 90%;
+    }
+}
+
+
+
+/* pagina configuração aba Perfil*/
+
+/* Estilos para a seção de perfil */
+.profile-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-tab {
+    background-color: #34495e;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-right: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profile-tab.active {
+    background-color: #3498db;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+    font-weight: bold;
+}
+
+.profile-tab-content {
+    display: none;
+}
+
+.profile-tab-content.active {
+    display: block;
+}
+
+/* Informações do perfil */
+.profile-info-container {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.avatar-initials {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+}
+
+.change-avatar-btn {
+    background-color: #34495e;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-field {
+    margin-bottom: 15px;
+}
+
+.profile-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.password-field {
+    display: flex;
+    align-items: center;
+}
+
+.password-field input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.change-password-btn {
+    background-color: #34495e;
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+.save-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Usuários logados */
+.logged-users-container {
+    margin-top: 20px;
+}
+
+.logged-users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.logged-users-filters {
+    display: flex;
+    align-items: center;
+}
+
+.logged-users-filters select,
+.logged-users-filters input {
+    margin-right: 10px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.refresh-button {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logged-users-table-container {
+    margin-bottom: 30px;
+}
+
+.logged-users-table, 
+.session-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.logged-users-table th, 
+.logged-users-table td,
+.session-history-table th,
+.session-history-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.logged-users-table th,
+.session-history-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-role {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.online-time {
+    display: flex;
+    align-items: center;
+}
+
+.online-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.online-indicator.active {
+    background-color: #2ecc71;
+}
+
+.online-indicator.inactive {
+    background-color: #e74c3c;
+}
+
+.action-button {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.action-button.disconnect {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.action-button.view-details {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.session-history h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.page-btn {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page-info {
+    margin: 0 10px;
+}
+
+
+/* Estilos para a seção de Adicionar nova IA */
+#nova-ia-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: Arial, sans-serif;
+}
+
+.categorias-container {
+    margin-bottom: 10px;
+}
+
+.categoria-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.categoria-input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-categoria-btn {
+    background-color: #e74c3c;
+    color: white;
+    width: 30px;
+    height: 38px;
+    font-size: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categoria-info {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.ia-preview {
+    margin-top: 30px;
+}
+
+.ia-search {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.ia-search input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.ia-table-container {
+    overflow-x: auto;
+}
+
+.ia-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ia-table th, .ia-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.ia-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.ia-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+/* Estilos para a seção de Downloads */
+#downloads {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#downloads h3 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+#downloads p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* Cabeçalho com filtros e busca */
+.downloads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-filter {
+    display: flex;
+    gap: 10px;
+}
+
+#search-downloads {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 250px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+#search-downloads:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.search-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #2980b9;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-options select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 150px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filter-options select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.clear-button {
+    background-color: #ecf0f1;
+    color: #34495e;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.clear-button:hover {
+    background-color: #e0e6e8;
+    border-color: #bdc3c7;
+}
+
+/* Tabela de downloads */
+.downloads-table-container {
+    overflow-x: auto;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.downloads-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.downloads-table thead th {
+    background-color: #34495e;
+    color: white;
+    text-align: left;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.downloads-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.downloads-table tbody tr:nth-child(even) {
+    background-color: #f7f9fa;
+}
+
+.downloads-table tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+.downloads-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.downloads-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilos para ícones e informações de arquivos */
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.file-icon.document::before {
+    content: "DOC";
+    background-color: #3498db;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-icon.image::before {
+    content: "IMG";
+    background-color: #27ae60;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-icon.video::before {
+    content: "VID";
+    background-color: #e74c3c;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-icon.audio::before {
+    content: "AUD";
+    background-color: #9b59b6;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-icon.application::before {
+    content: "APP";
+    background-color: #f39c12;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-icon.archive::before {
+    content: "ZIP";
+    background-color: #16a085;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.file-name {
+    font-weight: 500;
+}
+
+/* Status dos downloads */
+.download-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.download-status.complete {
+    background-color: #e6f7ee;
+    color: #27ae60;
+}
+
+.download-status.pending {
+    background-color: #fef8e8;
+    color: #f39c12;
+}
+
+.download-status.error {
+    background-color: #fdeeee;
+    color: #e74c3c;
+}
+
+/* Caminho da pasta e botão para abrir */
+.folder-path {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.path-text {
+    color: #7f8c8d;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.open-folder-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #7f8c8d;
+    transition: color 0.2s;
+}
+
+.open-folder-btn:hover {
+    color: #3498db;
+}
+
+/* Botões de ações */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-button.open {
+    background-color: #3498db;
+    color: white;
+}
+
+.action-button.open:hover {
+    background-color: #2980b9;
+}
+
+.action-button.delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.action-button.delete:hover {
+    background-color: #c0392b;
+}
+
+.action-button.pause {
+    background-color: #f39c12;
+    color: white;
+}
+
+.action-button.pause:hover {
+    background-color: #d35400;
+}
+
+.action-button.cancel {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.action-button.cancel:hover {
+    background-color: #596566;
+}
+
+/* Rodapé com informações de armazenamento */
+.downloads-footer {
+    margin-top: 25px;
+}
+
+.storage-info {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.storage-bar {
+    height: 10px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.storage-used {
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.storage-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Configurações de download */
+.download-settings {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.download-settings h4 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    flex: 1;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.location-selector {
+    display: flex;
+    gap: 10px;
+    flex: 2;
+}
+
+.location-selector input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f8f9fa;
+}
+
+.browse-button {
+    background-color: #ecf0f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.browse-button:hover {
+    background-color: #e0e6e8;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #3498db;
+}
+
+#download-limit {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+.setting-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.save-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: #2980b9;
+}
+
+.reset-button {
+    background-color: #ecf0f1;
+    color: #34495e;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.reset-button:hover {
+    background-color: #e0e6e8;
+    border-color: #bdc3c7;
+}
+
+/* Efeitos de loading para downloads em progresso */
+@keyframes progressAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.download-status.pending {
+    background: linear-gradient(90deg, #fef8e8 0%, #fdf3d7 50%, #fef8e8 100%);
+    background-size: 200% 100%;
+    animation: progressAnimation 2s linear infinite;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .downloads-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-filter, .filter-options {
+        width: 100%;
+    }
+    
+    .filter-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .setting-item label {
+        margin-bottom: 5px;
+    }
+    
+    .location-selector {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .storage-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+
+
+
+
+
+/* Estilos adicionais para melhorar a interatividade */
+.removing {
+    animation: fadeOut 0.5s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; height: 0; padding: 0; margin: 0; border: 0; }
+}
+
+/* Status de download pausado */
+.download-status.paused {
+    background-color: #f2f2f2;
+    color: #7f8c8d;
+}
+
+/* Efeito de hover nos itens da tabela com mais detalhes */
+.downloads-table tbody tr:hover {
+    background-color: #ecf0f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* Melhorias nos botões de ação */
+.action-button:active {
+    transform: scale(0.95);
+}
+
+/* Tooltip para caminho de pasta truncado */
+.path-text {
+    position: relative;
+}
+
+.path-text:hover::after {
+    content: attr(data-full-path);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: #34495e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação para downloads em andamento */
+@keyframes progressPulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.download-status.pending {
+    animation: progressPulse 1.5s infinite;
+}
+
+/* Melhoria na responsividade em telas muito pequenas */
+@media (max-width: 480px) {
+    .downloads-table th:nth-child(3),
+    .downloads-table td:nth-child(3),
+    .downloads-table th:nth-child(5),
+    .downloads-table td:nth-child(5) {
+        display: none;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Estilo para drag and drop de arquivos */
+.drop-zone {
+    border: 2px dashed #3498db;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    background-color: rgba(52, 152, 219, 0.05);
+    transition: all 0.3s;
+}
+
+.drop-zone.active {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: #2980b9;
+}
+
+.drop-zone p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* Estilo para ícone de pasta melhorado */
+.open-folder-btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.open-folder-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Animação para notificação de novo download */
+@keyframes newDownload {
+    0% { background-color: rgba(46, 204, 113, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.new-download {
+    animation: newDownload 2s ease;
+}
+
+
+/* estilos das guias */
+
+QTabBar::tab{
+    color: white;
+}

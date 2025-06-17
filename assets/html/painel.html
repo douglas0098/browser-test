@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/painel.css">
+    <title>Catálogo de IAs</title>
+</head>
+<body>
+    <div class="container_painel">
+        <!-- Conteúdo estático do painel -->
+        <!-- Sem scripts de ponte! -->
+    </div>
+    
+    <!-- Script simplificado apenas para interações locais -->
+    <script>
+        // Apenas lógica de UI local, sem comunicação com Python
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegação entre seções
+            const menuButtons = document.querySelectorAll('.menu button');
+            const sections = document.querySelectorAll('.section');
+            
+            menuButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Esconder todas as seções
+                    sections.forEach(s => s.classList.remove('active'));
+                    menuButtons.forEach(b => b.classList.remove('active'));
+                    
+                    // Mostrar seção selecionada
+                    document.getElementById(sectionId).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Abrir links externos
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const url = this.getAttribute('data-url');
+                    if (url) {
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

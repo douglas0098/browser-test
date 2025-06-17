@@ -1,0 +1,2390 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="..\css/styles.css">
+    <link rel="stylesheet" href="..\css/mercadopago.css">
+    <link rel="stylesheet" href="..\css/boleto.css">
+    <link rel="stylesheet" href="..\css/senha.css">
+    <link rel="stylesheet" href="..\css/cache.css">
+    <link rel="stylesheet" href="..\css/gestao_gastos.css">
+    <link rel="stylesheet" href="..\css/dashboard.css">
+    <link rel="stylesheet" href="..\css/gestao_pagamentos.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Configurações</h2>
+            </div>
+            <ul class="menu">
+                <li><button onclick="showSection('perfil')">Perfil</button></li>
+                <li><button onclick="showSection('downloads')">Downloads</button></li>
+                <li><button onclick="showSection('nova_ia')">Nova IA</button></li>
+                <li><button onclick="showSection('usuario')">Usuário</button></li>
+                <li><button onclick="showSection('pagamentos')">Pagamentos</button></li>
+                <li><button onclick="showSection('gestao_pg')">Gestão de Pagamentos</button></li>
+                <li><button onclick="showSection('gestao_gastos')">Gestão de Gastos</button></li>
+                <li><button onclick="showSection('dashboard')">Dashboard</button></li>
+                <li><button onclick="showSection('cache')">Cache</button></li>
+                <li><button onclick="showSection('proxy')">Proxy</button></li>
+                <li><button onclick="showSection('antidetecao')">Anti-detecção</button></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div id="perfil" class="section">
+                <h3>Perfil</h3>
+                <p>Gerencie suas informações de perfil e visualize atividades de usuários logados.</p>
+                
+                <!-- Aba de navegação para a seção de perfil -->
+                <div class="profile-tabs">
+                    <button class="profile-tab active" data-tab="profile-info">Informações do Perfil</button>
+                    <button class="profile-tab" data-tab="logged-users">Usuários Logados</button>
+                </div>
+                
+                <!-- Conteúdo da aba de informações do perfil -->
+                <div id="profile-info" class="profile-tab-content active">
+                    <div class="profile-info-container">
+                        <div class="profile-avatar">
+                            <div class="avatar-placeholder">
+                                <span class="avatar-initials">JS</span>
+                            </div>
+                            <button class="change-avatar-btn">Alterar Foto</button>
+                        </div>
+                        
+                        <div class="profile-details">
+                            <div class="profile-field">
+                                <label for="profile-name">Nome:</label>
+                                <input type="text" id="profile-name" value="João Silva">
+                            </div>
+                            
+                            <div class="profile-field">
+                                <label for="profile-email">Email:</label>
+                                <input type="email" id="profile-email" value="joao.silva@email.com">
+                            </div>
+                            
+                            <div class="profile-field">
+                                <label for="profile-type">Tipo de Conta:</label>
+                                <input type="text" id="profile-type" value="Administrador" readonly>
+                            </div>
+                            
+                            <div class="profile-field">
+                                <label for="profile-created">Conta criada em:</label>
+                                <input type="text" id="profile-created" value="15/01/2023" readonly>
+                            </div>
+                            
+                            <div class="profile-field">
+                                <label for="profile-password">Senha:</label>
+                                <div class="password-field">
+                                    <input type="password" id="profile-password" value="********">
+                                    <button class="change-password-btn">Alterar Senha</button>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-actions">
+                                <button class="save-button">Salvar Alterações</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conteúdo da aba de usuários logados -->
+                <div id="logged-users" class="profile-tab-content">
+                    <div class="logged-users-container">
+                        <div class="logged-users-header">
+                            <h4>Usuários Atualmente Logados</h4>
+                            <div class="logged-users-filters">
+                                <select id="filter-profile">
+                                    <option value="all">Todos os Perfis</option>
+                                    <option value="admin">Administradores</option>
+                                    <option value="equipe">Equipe de Trabalho</option>
+                                    <option value="membro">Membros</option>
+                                </select>
+                                <input type="text" id="search-users" placeholder="Buscar usuário...">
+                                <button class="refresh-button" title="Atualizar lista">↻</button>
+                            </div>
+                        </div>
+                        
+                        <div class="logged-users-table-container">
+                            <table class="logged-users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuário</th>
+                                        <th>Dispositivo</th>
+                                        <th>Endereço IP</th>
+                                        <th>Hora de Login</th>
+                                        <th>Tempo Online</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="user-info">
+                                                <span class="user-avatar">JS</span>
+                                                <div class="user-details">
+                                                    <span class="user-name">João Silva</span>
+                                                    <span class="user-role">Administrador</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Windows PC - Chrome</td>
+                                        <td>192.168.1.100</td>
+                                        <td>07/04/2025 08:15</td>
+                                        <td>
+                                            <div class="online-time">
+                                                <span class="online-indicator active"></span>
+                                                <span>3h 45min</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="action-button disconnect">Desconectar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-info">
+                                                <span class="user-avatar">MS</span>
+                                                <div class="user-details">
+                                                    <span class="user-name">Maria Souza</span>
+                                                    <span class="user-role">Equipe de Trabalho</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Android - Samsung Galaxy</td>
+                                        <td>192.168.1.105</td>
+                                        <td>07/04/2025 09:30</td>
+                                        <td>
+                                            <div class="online-time">
+                                                <span class="online-indicator active"></span>
+                                                <span>2h 30min</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="action-button disconnect">Desconectar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-info">
+                                                <span class="user-avatar">CF</span>
+                                                <div class="user-details">
+                                                    <span class="user-name">Carlos Ferreira</span>
+                                                    <span class="user-role">Membro</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>MacBook - Safari</td>
+                                        <td>192.168.1.110</td>
+                                        <td>07/04/2025 10:15</td>
+                                        <td>
+                                            <div class="online-time">
+                                                <span class="online-indicator active"></span>
+                                                <span>1h 45min</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="action-button disconnect">Desconectar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-info">
+                                                <span class="user-avatar">AO</span>
+                                                <div class="user-details">
+                                                    <span class="user-name">Ana Oliveira</span>
+                                                    <span class="user-role">Convidado</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>iPhone - Safari</td>
+                                        <td>192.168.1.120</td>
+                                        <td>07/04/2025 08:30</td>
+                                        <td>
+                                            <div class="online-time">
+                                                <span class="online-indicator inactive"></span>
+                                                <span>Offline (última atividade: 11:30)</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="action-button view-details">Detalhes</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="session-history">
+                            <h4>Histórico de Sessões</h4>
+                            <table class="session-history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuário</th>
+                                        <th>Dispositivo</th>
+                                        <th>IP</th>
+                                        <th>Login</th>
+                                        <th>Logout</th>
+                                        <th>Duração</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>João Silva</td>
+                                        <td>Windows PC - Firefox</td>
+                                        <td>192.168.1.100</td>
+                                        <td>06/04/2025 14:30</td>
+                                        <td>06/04/2025 18:45</td>
+                                        <td>4h 15min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maria Souza</td>
+                                        <td>Android - Chrome</td>
+                                        <td>192.168.1.105</td>
+                                        <td>06/04/2025 10:15</td>
+                                        <td>06/04/2025 15:30</td>
+                                        <td>5h 15min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carlos Ferreira</td>
+                                        <td>Windows Laptop - Edge</td>
+                                        <td>192.168.1.110</td>
+                                        <td>05/04/2025 09:00</td>
+                                        <td>05/04/2025 17:15</td>
+                                        <td>8h 15min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ana Oliveira</td>
+                                        <td>iPad - Safari</td>
+                                        <td>192.168.1.120</td>
+                                        <td>05/04/2025 13:45</td>
+                                        <td>05/04/2025 16:30</td>
+                                        <td>2h 45min</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="pagination">
+                                <button class="page-btn">◀</button>
+                                <span class="page-info">Página 1 de 3</span>
+                                <button class="page-btn">▶</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+
+            <div id="downloads" class="section">
+                <h3>Downloads</h3>
+                <p>Gerencie seus downloads e acesse os arquivos baixados.</p>
+                
+                <div class="downloads-header">
+                    <div class="search-filter">
+                        <input type="text" id="search-downloads" placeholder="Pesquisar downloads...">
+                        <button class="search-button">Buscar</button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="filter-type">
+                            <option value="all">Todos os tipos</option>
+                            <option value="document">Documentos</option>
+                            <option value="image">Imagens</option>
+                            <option value="video">Vídeos</option>
+                            <option value="audio">Áudios</option>
+                            <option value="application">Aplicativos</option>
+                            <option value="other">Outros</option>
+                        </select>
+                        <select id="filter-date">
+                            <option value="all">Qualquer data</option>
+                            <option value="today">Hoje</option>
+                            <option value="yesterday">Ontem</option>
+                            <option value="week">Última semana</option>
+                            <option value="month">Último mês</option>
+                            <option value="year">Último ano</option>
+                        </select>
+                        <button id="clear-filters" class="clear-button">Limpar filtros</button>
+                    </div>
+                </div>
+
+                <!--
+                  Downloads
+                -->
+                
+                <div class="downloads-table-container">
+                    <table class="downloads-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Tamanho</th>
+                                <th>Data</th>
+                                <th>Origem</th>
+                                <th>Pasta</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon document"></span>
+                                        <span class="file-name">relatorio_financeiro.pdf</span>
+                                    </div>
+                                </td>
+                                <td>PDF</td>
+                                <td>2.5 MB</td>
+                                <td>22/04/2025 14:30</td>
+                                <td>www.empresa.com.br</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Downloads">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Downloads</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon image"></span>
+                                        <span class="file-name">logo_empresa.png</span>
+                                    </div>
+                                </td>
+                                <td>Imagem</td>
+                                <td>758 KB</td>
+                                <td>20/04/2025 10:15</td>
+                                <td>www.recursos.com/imagens</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Pictures">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Pictures</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon video"></span>
+                                        <span class="file-name">tutorial_python.mp4</span>
+                                    </div>
+                                </td>
+                                <td>Vídeo</td>
+                                <td>245 MB</td>
+                                <td>18/04/2025 16:45</td>
+                                <td>www.cursos-online.com</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Videos">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Videos</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon application"></span>
+                                        <span class="file-name">vscode-installer.exe</span>
+                                    </div>
+                                </td>
+                                <td>Aplicativo</td>
+                                <td>65.2 MB</td>
+                                <td>17/04/2025 09:30</td>
+                                <td>code.visualstudio.com</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Downloads">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Downloads</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon audio"></span>
+                                        <span class="file-name">podcast_tecnologia.mp3</span>
+                                    </div>
+                                </td>
+                                <td>Áudio</td>
+                                <td>42.8 MB</td>
+                                <td>15/04/2025 20:15</td>
+                                <td>www.podcasts.com</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Music">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Music</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon document"></span>
+                                        <span class="file-name">documentacao_projeto.docx</span>
+                                    </div>
+                                </td>
+                                <td>Documento</td>
+                                <td>1.8 MB</td>
+                                <td>15/04/2025 11:20</td>
+                                <td>intranet.empresa.com</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Documents\Projetos">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Documents\Projetos</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status complete">Completo</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button open" title="Abrir arquivo">Abrir</button>
+                                        <button class="action-button delete" title="Excluir download">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="file-info">
+                                        <span class="file-icon archive"></span>
+                                        <span class="file-name">dados_clientes.zip</span>
+                                    </div>
+                                </td>
+                                <td>Arquivo ZIP</td>
+                                <td>35.6 MB</td>
+                                <td>14/04/2025 16:40</td>
+                                <td>intranet.empresa.com/dados</td>
+                                <td>
+                                    <div class="folder-path">
+                                        <button class="open-folder-btn" title="Abrir pasta" data-path="C:\Users\Joao\Downloads">📁</button>
+                                        <span class="path-text">C:\Users\Joao\Downloads</span>
+                                    </div>
+                                </td>
+                                <td><span class="download-status pending">Em andamento (80%)</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button pause" title="Pausar download">Pausar</button>
+                                        <button class="action-button cancel" title="Cancelar download">Cancelar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="downloads-footer">
+                    <div class="storage-info">
+                        <div class="storage-bar">
+                            <div class="storage-used" style="width: 65%;"></div>
+                        </div>
+                        <div class="storage-text">
+                            <span>Espaço usado em Downloads: 560.5 MB de 1 GB</span>
+                            <button class="clear-button">Limpar Downloads Concluídos</button>
+                        </div>
+                    </div>
+                    
+                    <div class="download-settings">
+                        <h4>Configurações de Download</h4>
+                        
+                        <div class="setting-item">
+                            <label for="default-location">Local padrão para downloads:</label>
+                            <div class="location-selector">
+                                <input type="text" id="default-location" value="C:\Users\Joao\Downloads" readonly>
+                                <button class="browse-button">Procurar...</button>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="ask-location">Perguntar onde salvar antes de baixar:</label>
+                            <input type="checkbox" id="ask-location" checked>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="auto-open">Abrir automaticamente arquivos após o download:</label>
+                            <input type="checkbox" id="auto-open">
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="download-limit">Limite de downloads simultâneos:</label>
+                            <select id="download-limit">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="0">Ilimitado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-actions">
+                            <button class="save-button">Salvar Configurações</button>
+                            <button class="reset-button">Restaurar Padrões</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                  Nova IA
+             -->
+
+
+            <div id="nova_ia" class="section">
+                <h3>Adicionar nova IA</h3>
+                <p>Preencha o formulário abaixo para adicionar um novo perfil de IA ao sistema.</p>
+                
+                <form id="nova-ia-form">
+                    <div class="form-group">
+                        <label for="ia-nome">Nome da IA:</label>
+                        <input type="text" id="ia-nome" name="ia-nome" placeholder="Digite o nome da IA" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ia-link">Link da IA:</label>
+                        <input type="url" id="ia-link" name="ia-link" placeholder="https://exemplo.com/ia" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ia-user">Usuario da IA:</label>
+                        <input type="text" id="ia-user" name="ia-user" placeholder="Usuário da IA..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ia-password">Senha da IA:</label>
+                        <div class="password-container">
+                            <input type="password" id="ia-password" name="ia-password" placeholder="Senha..." required>
+                            <span class="password-toggle" onclick="togglePassword()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-off-icon" style="display:none;">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Categorias (máximo 5):</label>
+                        <div class="categorias-container">
+                            <div class="categoria-item">
+                                <input type="text" name="categoria-1" placeholder="Categoria 1" class="categoria-input">
+                                <button type="button" class="remove-categoria-btn" disabled>-</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-categoria-btn" class="add-button">Adicionar Categoria</button>
+                        <p class="categoria-info">1 de 5 categorias adicionadas</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ia-observacoes">Observações:</label>
+                        <textarea id="ia-observacoes" name="ia-observacoes" rows="4" placeholder="Informações adicionais sobre a IA (opcional)"></textarea>
+                    </div>
+
+                    <label for="proxy">Configuração de Proxy:</label>
+                    <select class="group-select">
+                                        <option value="admin">185.14.238.40:29891:jnVKAN6F:m726EadY</option>
+                                        <option value="equipe" selected>185.14.238.40:29892:tlXIAaAR:NtZ9zSM</option>
+                    </select>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="save-button">Salvar IA</button>
+                        <button type="reset" class="cancel-button">Limpar Dados</button>
+                    </div>
+                </form>
+                
+                <div class="ia-preview">
+                    <h4>Lista de IAs Cadastradas</h4>
+                    <div class="ia-search">
+                        <input type="text" id="buscar-ia" placeholder="Buscar IA...">
+                        <button class="search-button">Buscar</button>
+                    </div>
+                    
+                    <div class="ia-table-container">
+                        <table class="ia-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Categorias</th>
+                                    <th>Link</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ChatGPT</td>
+                                    <td>Conversação, Texto, Educação</td>
+                                    <td>https://chat.openai.com</td>
+                                    <td>
+                                        <button class="action-button edit">Editar</button>
+                                        <button class="action-button delete">Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>DALL-E</td>
+                                    <td>Imagem, Criação, Arte</td>
+                                    <td>https://openai.com/dall-e</td>
+                                    <td>
+                                        <button class="action-button edit">Editar</button>
+                                        <button class="action-button delete">Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Claude</td>
+                                    <td>Conversação, Texto, Assistente</td>
+                                    <td>https://claude.ai</td>
+                                    <td>
+                                        <button class="action-button edit">Editar</button>
+                                        <button class="action-button delete">Excluir</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                  Usuarios
+             -->
+
+            <div id="usuario" class="section">
+                <h3>Gerenciamento de Usuários</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-users" placeholder="Pesquisar usuários...">
+                    <button class="search-button">Buscar</button>
+                </div>
+                
+                <div class="user-table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Grupo</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>João Silva</td>
+                                <td>joao.silva@email.com</td>
+                                <td>
+                                    <select class="group-select">
+                                        <option value="admin" selected>Administrador</option>
+                                        <option value="equipe">Equipe de trabalho</option>
+                                        <option value="membro">Membro</option>
+                                        <option value="convidado">Convidado</option>
+                                        <option value="avulso">Avulso</option>
+                                    </select>
+                                </td>
+                                <td><span class="status active">Ativo</span></td>
+                                <td>
+                                    <button class="action-button edit">Editar</button>
+                                    <button class="action-button delete">Excluir</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maria Souza</td>
+                                <td>maria.souza@email.com</td>
+                                <td>
+                                    <select class="group-select">
+                                        <option value="admin">Administrador</option>
+                                        <option value="equipe" selected>Equipe de trabalho</option>
+                                        <option value="membro">Membro</option>
+                                        <option value="convidado">Convidado</option>
+                                        <option value="avulso">Avulso</option>
+                                    </select>
+                                </td>
+                                <td><span class="status active">Ativo</span></td>
+                                <td>
+                                    <button class="action-button edit">Editar</button>
+                                    <button class="action-button delete">Excluir</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Ferreira</td>
+                                <td>carlos.ferreira@email.com</td>
+                                <td>
+                                    <select class="group-select">
+                                        <option value="admin">Administrador</option>
+                                        <option value="equipe">Equipe de trabalho</option>
+                                        <option value="membro" selected>Membro</option>
+                                        <option value="convidado">Convidado</option>
+                                        <option value="avulso">Avulso</option>
+                                    </select>
+                                </td>
+                                <td><span class="status inactive">Inativo</span></td>
+                                <td>
+                                    <button class="action-button edit">Editar</button>
+                                    <button class="action-button delete">Excluir</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ana Oliveira</td>
+                                <td>ana.oliveira@email.com</td>
+                                <td>
+                                    <select class="group-select">
+                                        <option value="admin">Administrador</option>
+                                        <option value="equipe">Equipe de trabalho</option>
+                                        <option value="membro">Membro</option>
+                                        <option value="convidado" selected>Convidado</option>
+                                        <option value="avulso">Avulso</option>
+                                    </select>
+                                </td>
+                                <td><span class="status active">Ativo</span></td>
+                                <td>
+                                    <button class="action-button edit">Editar</button>
+                                    <button class="action-button delete">Excluir</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pedro Santos</td>
+                                <td>pedro.santos@email.com</td>
+                                <td>
+                                    <select class="group-select">
+                                        <option value="admin">Administrador</option>
+                                        <option value="equipe">Equipe de trabalho</option>
+                                        <option value="membro">Membro</option>
+                                        <option value="convidado">Convidado</option>
+                                        <option value="avulso" selected>Avulso</option>
+                                    </select>
+                                </td>
+                                <td><span class="status active">Ativo</span></td>
+                                <td>
+                                    <button class="action-button edit">Editar</button>
+                                    <button class="action-button delete">Excluir</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="user-actions">
+                    <button class="add-button" id="add-user-btn">Adicionar Usuário</button>
+                    <button class="save-button" id="save-users-btn">Salvar Alterações</button>
+                </div>
+                
+                <!-- Modal para adicionar ou editar usuário -->
+                <div id="user-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h4>Adicionar/Editar Usuário</h4>
+                        <form id="user-form">
+                            <label for="user-name">Nome:</label>
+                            <input type="text" id="user-name" required>
+                            
+                            <label for="user-email">Email:</label>
+                            <input type="email" id="user-email" required>
+                            
+                            <label for="user-group">Grupo:</label>
+                            <select id="user-group">
+                                <option value="admin">Administrador</option>
+                                <option value="equipe">Equipe de trabalho</option>
+                                <option value="membro">Membro</option>
+                                <option value="convidado">Convidado</option>
+                                <option value="avulso">Avulso</option>
+                            </select>
+                            
+                            <label for="user-status">Status:</label>
+                            <select id="user-status">
+                                <option value="active">Ativo</option>
+                                <option value="inactive">Inativo</option>
+                            </select>
+                            
+                            <div class="form-buttons">
+                                <button type="submit" class="save-button">Salvar</button>
+                                <button type="button" class="cancel-button">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+             <!--
+                  pagamentos
+             -->
+
+            <div id="pagamentos" class="section">
+                <h3>Pagamentos</h3>
+                
+                <div class="payment-options">
+                    <h4>Escolha a forma de pagamento:</h4>
+                    
+                    <div class="payment-tabs">
+                        <button class="payment-tab active" data-tab="pix">PIX</button>
+                        <button class="payment-tab" data-tab="boleto">Boleto</button>
+                        <button class="payment-tab" data-tab="cartao">Cartão</button>
+                    </div>
+                    
+                   
+
+                    <div class="payment-content">
+
+                        <!--
+                             pagamentos via pix
+                        -->
+                        <div id="pix-content" class="payment-tab-content active">
+                            <div class="pix-container">
+                                <div class="pix-qrcode">
+                                    <div class="qrcode-placeholder">
+                                        <!-- Aqui seria a imagem do QR Code -->
+                                        <div class="qrcode-box"></div>
+                                    </div>
+                                    <p class="qrcode-instruction">Escaneie o QR Code com o aplicativo do seu banco</p>
+                                </div>
+                                
+                                <div class="pix-info">
+                                    <div class="pix-field">
+                                        <label>Chave PIX:</label>
+                                        <div class="copy-field">
+                                            <input type="text" id="pix-key" value="browser123@dominio.com" readonly>
+                                            <button class="copy-button" data-copy="pix-key">Copiar</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pix-field">
+                                        <label>Nome:</label>
+                                        <input type="text" value="Browser Software LTDA" readonly>
+                                    </div>
+                                    
+                                    <div class="pix-field">
+                                        <label>Valor:</label>
+                                        <input type="text" id="pix-value" value="R$ 99,90" readonly>
+                                    </div>
+                                    
+                                    <div class="pix-field">
+                                        <label>Validade:</label>
+                                        <input type="text" value="15 minutos" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-instructions">
+                                <h5>Como pagar com PIX:</h5>
+                                <ol>
+                                    <li>Abra o aplicativo do seu banco</li>
+                                    <li>Selecione a opção PIX</li>
+                                    <li>Escaneie o QR Code ou copie a chave PIX</li>
+                                    <li>Confirme as informações e finalize o pagamento</li>
+                                    <li>O sistema confirmará o pagamento automaticamente</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+
+                        <!--
+                             pagamentos via boleto
+                        -->
+
+                        <div id="boleto-content" class="payment-tab-content">
+                            <div class="boleto-container">
+                                <h4>Pague com Boleto Bancário</h4>
+                                
+                                <form id="form-boleto" class="boleto-form">
+                                    <div class="form-group">
+                                        <label for="boleto-name">Nome Completo:</label>
+                                        <input type="text" id="boleto-name" class="form-control" placeholder="Digite seu nome completo" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="boleto-email">E-mail:</label>
+                                        <input type="email" id="boleto-email" class="form-control" placeholder="Digite seu e-mail" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="boleto-cpf">CPF:</label>
+                                        <input type="text" id="boleto-cpf" class="form-control" placeholder="Digite seu CPF (apenas números)" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="boleto-telefone">Telefone:</label>
+                                        <input type="text" id="boleto-telefone" class="form-control" placeholder="(00) 00000-0000" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="boleto-cep">CEP:</label>
+                                        <input type="text" id="boleto-cep" class="form-control" placeholder="Digite seu CEP" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="boleto-endereco">Endereço:</label>
+                                        <input type="text" id="boleto-endereco" class="form-control" placeholder="Rua, Número, Complemento" required>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group half-width">
+                                            <label for="boleto-cidade">Cidade:</label>
+                                            <input type="text" id="boleto-cidade" class="form-control" required>
+                                        </div>
+                                        
+                                        <div class="form-group half-width">
+                                            <label for="boleto-estado">Estado:</label>
+                                            <select id="boleto-estado" class="form-control" required>
+                                                <option value="">Selecione</option>
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="boleto-actions">
+                                        <button type="submit" id="generate-boleto-btn" class="payment-button">Gerar Boleto</button>
+                                    </div>
+                                </form>
+                                
+                                <!-- Área que será preenchida após a geração do boleto -->
+                                <div id="boleto-result" class="boleto-result" style="display: none;">
+                                    <div class="boleto-success">
+                                        <div class="success-icon">✅</div>
+                                        <h5>Boleto gerado com sucesso!</h5>
+                                        <p>Seu boleto foi gerado e está pronto para pagamento.</p>
+                                    </div>
+                                    
+                                    <div class="boleto-details">
+                                        <div class="boleto-field">
+                                            <label>Valor:</label>
+                                            <input type="text" id="boleto-valor" value="R$ 99,90" readonly>
+                                        </div>
+                                        
+                                        <div class="boleto-field">
+                                            <label>Vencimento:</label>
+                                            <input type="text" id="boleto-vencimento" readonly>
+                                        </div>
+                                        
+                                        <div class="boleto-field">
+                                            <label>Beneficiário:</label>
+                                            <input type="text" value="Browser Software LTDA" readonly>
+                                        </div>
+                                        
+                                        <div class="boleto-field">
+                                            <label>Código de barras:</label>
+                                            <div class="copy-field">
+                                                <input type="text" id="boleto-barcode" readonly>
+                                                <button class="copy-button" data-copy="boleto-barcode">Copiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="boleto-options">
+                                        <a id="boleto-pdf-link" class="download-button" target="_blank">
+                                            <i class="download-icon"></i>
+                                            Baixar Boleto PDF
+                                        </a>
+                                        <button id="boleto-email-btn" class="email-button">
+                                            <i class="email-icon"></i>
+                                            Enviar por Email
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Mostra durante o processamento do boleto -->
+                                <div id="boleto-loading" class="boleto-loading" style="display: none;">
+                                    <div class="loading-spinner"></div>
+                                    <p>Gerando seu boleto, aguarde um momento...</p>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-instructions">
+                                <h5>Como pagar com Boleto Bancário:</h5>
+                                <ol>
+                                    <li>Preencha seus dados para gerar o boleto</li>
+                                    <li>Clique em "Gerar Boleto" para criar seu boleto bancário</li>
+                                    <li>Baixe o PDF do boleto ou copie o código de barras</li>
+                                    <li>Pague em qualquer banco, lotérica ou pelo aplicativo do seu banco</li>
+                                    <li>A compensação do pagamento pode levar até 3 dias úteis</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!--
+                             Fim pagamentos via boleto
+                        -->
+
+                        <!--
+                            Pagamentos via cartão de credito ou debito
+                        -->
+                        <div id="cartao-content" class="payment-tab-content">
+                            <div class="cartao-container">
+                                <h4>Pague com Cartão via Mercado Pago</h4>
+                                
+                                <!-- Seleção de tipo de cartão -->
+                                <div class="card-type-selection">
+                                    <div class="radio-group">
+                                        <div class="radio-option">
+                                            <input type="radio" id="card-credit" name="card-type" value="credit" checked>
+                                            <label for="card-credit">Crédito</label>
+                                        </div>
+                                        <div class="radio-option">
+                                            <input type="radio" id="card-debit" name="card-type" value="debit">
+                                            <label for="card-debit">Débito</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mercadopago-form">
+                                    <form id="form-checkout">
+                                        <div class="form-group">
+                                            <label for="form-checkout__cardNumber">Número do Cartão:</label>
+                                            <div id="form-checkout__cardNumber" class="mp-input"></div>
+                                        </div>
+                        
+                                        <div class="form-row">
+                                            <div class="form-group half-width">
+                                                <label for="form-checkout__expirationDate">Data de Vencimento:</label>
+                                                <div id="form-checkout__expirationDate" class="mp-input"></div>
+                                            </div>
+                                            
+                                            <div class="form-group half-width">
+                                                <label for="form-checkout__securityCode">Código de Segurança:</label>
+                                                <div id="form-checkout__securityCode" class="mp-input"></div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="form-checkout__cardholderName">Nome no Cartão:</label>
+                                            <input type="text" id="form-checkout__cardholderName" class="mp-input" />
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="form-checkout__issuer">Bandeira:</label>
+                                            <select id="form-checkout__issuer" class="mp-input">
+                                                <option value="visa">Visa</option>
+                                                    <option value="mastercard" selected>Mastercard</option>
+                                                    <option value="amex">Amex</option>
+                                                    <option value="elo">Elo</option>
+                                                    <option value="hipercard">Hipercard</option>
+                                            </select>
+                                            
+                                        </div>
+                        
+                                        <!-- Campo de parcelas (visível apenas para cartão de crédito) -->
+                                        <div class="form-group" id="installments-group">
+                                            <label for="form-checkout__installments">Parcelas:</label>
+                                            <select id="form-checkout__installments" class="mp-input"></select>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="form-checkout__identificationType">Tipo de Documento:</label>
+                                            <select id="form-checkout__identificationType" class="mp-input"></select>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="form-checkout__identificationNumber">Número do Documento:</label>
+                                            <input type="text" id="form-checkout__identificationNumber" class="mp-input" />
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="form-checkout__email">E-mail:</label>
+                                            <input type="email" id="form-checkout__email" class="mp-input" value="" />
+                                        </div>
+                        
+                                        <!-- Opção de pagamento mensal recorrente -->
+                                        <div class="form-group subscription-option">
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" id="subscription-checkbox" name="subscription">
+                                                <label for="subscription-checkbox">Agendar pagamento mensal automático</label>
+                                            </div>
+                                            <div class="subscription-details" id="subscription-details" style="display: none;">
+                                                <p>✓ Seu cartão será cobrado mensalmente no valor de R$ 99,90</p>
+                                                <p>✓ Você pode cancelar a qualquer momento nas configurações</p>
+                                                <p>✓ Receba um lembrete por e-mail 3 dias antes de cada cobrança</p>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="card-payment-buttons">
+                                            <button type="submit" id="form-checkout__submit" class="payment-button">Pagar R$ 99,90</button>
+                                            <div class="secure-payment">
+                                                <span class="secure-icon">🔒</span> Pagamento Seguro via Mercado Pago
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    <div id="payment-status" class="payment-status" style="display: none;">
+                                        <div class="payment-status-content">
+                                            <span id="payment-status-icon"></span>
+                                            <h4 id="payment-status-message"></h4>
+                                            <p id="payment-status-detail"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-cards">
+                                    <img src="../img/visa.png" alt="Visa" class="card-logo">
+                                    <img src="../img/mastercard.png" alt="Mastercard" class="card-logo">
+                                    <img src="../img/amex.png" alt="American Express" class="card-logo">
+                                    <img src="../img/elo.png" alt="Elo" class="card-logo">
+                                    <img src="../img/hipercard.png" alt="Hipercard" class="card-logo">
+                                </div>
+                            </div>
+                            
+                            <div class="payment-instructions">
+                                <h5>Como pagar com Cartão:</h5>
+                                <ol>
+                                    <li>Selecione crédito ou débito</li>
+                                    <li>Preencha os dados do seu cartão</li>
+                                    <li>Escolha o número de parcelas (se cartão de crédito)</li>
+                                    <li>Opcionalmente, ative o pagamento mensal automático</li>
+                                    <li>Clique em "Pagar" para finalizar a compra</li>
+                                    <li>O sistema confirmará o pagamento automaticamente</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!--
+                            Fim do pagamentos via cartão de credito ou debito
+                        -->
+
+                    </div>
+                </div>
+                
+                
+                <div class="payment-history">
+                    <h4>Histórico de Pagamentos</h4>
+                    <table class="payment-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Método</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05/03/2025</td>
+                                <td>Assinatura Premium</td>
+                                <td>R$ 99,90</td>
+                                <td>PIX</td>
+                                <td><span class="payment-status confirmed">Confirmado</span></td>
+                            </tr>
+                            <tr>
+                                <td>05/02/2025</td>
+                                <td>Assinatura Premium</td>
+                                <td>R$ 99,90</td>
+                                <td>Boleto</td>
+                                <td><span class="payment-status confirmed">Confirmado</span></td>
+                            </tr>
+                            <tr>
+                                <td>05/01/2025</td>
+                                <td>Assinatura Premium</td>
+                                <td>R$ 99,90</td>
+                                <td>PIX</td>
+                                <td><span class="payment-status confirmed">Confirmado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--
+            Gestão de Pagamentos (Admin)
+            -->
+            <div id="gestao_pg" class="section">
+                <h3>Gestão de Pagamentos</h3>
+                <p>Gerencie todos os pagamentos dos usuários do sistema.</p>
+                
+                <!-- Estatísticas gerais -->
+                <div class="payment-stats">
+                    <div class="stat-card">
+                        <h4>Pagamentos Hoje</h4>
+                        <span class="stat-number">R$ 1.247,30</span>
+                        <span class="stat-count">12 pagamentos</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Pendentes</h4>
+                        <span class="stat-number">R$ 599,70</span>
+                        <span class="stat-count">6 pagamentos</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Este Mês</h4>
+                        <span class="stat-number">R$ 15.890,40</span>
+                        <span class="stat-count">158 pagamentos</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Taxa de Sucesso</h4>
+                        <span class="stat-number">94.2%</span>
+                        <span class="stat-count">dos pagamentos</span>
+                    </div>
+                </div>
+                
+                <!-- Filtros e busca -->
+                <div class="admin-payment-filters">
+                    <div class="filter-row">
+                        <input type="text" id="search-payments" placeholder="Buscar por usuário, email ou ID...">
+                        <select id="filter-status">
+                            <option value="all">Todos os Status</option>
+                            <option value="confirmed">Confirmado</option>
+                            <option value="pending">Pendente</option>
+                            <option value="failed">Falhou</option>
+                            <option value="refunded">Reembolsado</option>
+                            <option value="cancelled">Cancelado</option>
+                        </select>
+                        <select id="filter-method">
+                            <option value="all">Todos os Métodos</option>
+                            <option value="pix">PIX</option>
+                            <option value="boleto">Boleto</option>
+                            <option value="credit">Cartão de Crédito</option>
+                            <option value="debit">Cartão de Débito</option>
+                        </select>
+                        <select id="filter-period">
+                            <option value="today">Hoje</option>
+                            <option value="yesterday">Ontem</option>
+                            <option value="week">Esta Semana</option>
+                            <option value="month" selected>Este Mês</option>
+                            <option value="custom">Período Personalizado</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="export-button">Exportar CSV</button>
+                        <button class="refresh-button">Atualizar</button>
+                    </div>
+                </div>
+                
+                <!-- Tabela de pagamentos -->
+                <div class="admin-payments-table-container">
+                    <table class="admin-payments-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuário</th>
+                                <th>Valor</th>
+                                <th>Método</th>
+                                <th>Data/Hora</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#PAY-001</td>
+                                <td>
+                                    <div class="user-payment-info">
+                                        <span class="user-avatar-small">JS</span>
+                                        <div class="user-details-small">
+                                            <span class="user-name-small">João Silva</span>
+                                            <span class="user-email-small">joao.silva@email.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="payment-value">R$ 99,90</td>
+                                <td>
+                                    <span class="payment-method pix">PIX</span>
+                                </td>
+                                <td>11/06/2025 14:30</td>
+                                <td>
+                                    <span class="admin-payment-status confirmed">Confirmado</span>
+                                </td>
+                                <td>
+                                    <div class="admin-action-buttons">
+                                        <button class="admin-action-btn view" title="Ver Detalhes">👁️</button>
+                                        <button class="admin-action-btn refund" title="Reembolsar">💸</button>
+                                        <button class="admin-action-btn receipt" title="Comprovante">📄</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#PAY-002</td>
+                                <td>
+                                    <div class="user-payment-info">
+                                        <span class="user-avatar-small">MS</span>
+                                        <div class="user-details-small">
+                                            <span class="user-name-small">Maria Souza</span>
+                                            <span class="user-email-small">maria.souza@email.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="payment-value">R$ 99,90</td>
+                                <td>
+                                    <span class="payment-method boleto">Boleto</span>
+                                </td>
+                                <td>11/06/2025 10:15</td>
+                                <td>
+                                    <span class="admin-payment-status pending">Pendente</span>
+                                </td>
+                                <td>
+                                    <div class="admin-action-buttons">
+                                        <button class="admin-action-btn view" title="Ver Detalhes">👁️</button>
+                                        <button class="admin-action-btn approve" title="Aprovar">✅</button>
+                                        <button class="admin-action-btn reject" title="Rejeitar">❌</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#PAY-003</td>
+                                <td>
+                                    <div class="user-payment-info">
+                                        <span class="user-avatar-small">CF</span>
+                                        <div class="user-details-small">
+                                            <span class="user-name-small">Carlos Ferreira</span>
+                                            <span class="user-email-small">carlos.ferreira@email.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="payment-value">R$ 99,90</td>
+                                <td>
+                                    <span class="payment-method credit">Cartão</span>
+                                </td>
+                                <td>10/06/2025 16:45</td>
+                                <td>
+                                    <span class="admin-payment-status failed">Falhou</span>
+                                </td>
+                                <td>
+                                    <div class="admin-action-buttons">
+                                        <button class="admin-action-btn view" title="Ver Detalhes">👁️</button>
+                                        <button class="admin-action-btn retry" title="Tentar Novamente">🔄</button>
+                                        <button class="admin-action-btn contact" title="Contatar">📞</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#PAY-004</td>
+                                <td>
+                                    <div class="user-payment-info">
+                                        <span class="user-avatar-small">AO</span>
+                                        <div class="user-details-small">
+                                            <span class="user-name-small">Ana Oliveira</span>
+                                            <span class="user-email-small">ana.oliveira@email.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="payment-value">R$ 99,90</td>
+                                <td>
+                                    <span class="payment-method pix">PIX</span>
+                                </td>
+                                <td>10/06/2025 08:20</td>
+                                <td>
+                                    <span class="admin-payment-status refunded">Reembolsado</span>
+                                </td>
+                                <td>
+                                    <div class="admin-action-buttons">
+                                        <button class="admin-action-btn view" title="Ver Detalhes">👁️</button>
+                                        <button class="admin-action-btn receipt" title="Comprovante">📄</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#PAY-005</td>
+                                <td>
+                                    <div class="user-payment-info">
+                                        <span class="user-avatar-small">PS</span>
+                                        <div class="user-details-small">
+                                            <span class="user-name-small">Pedro Santos</span>
+                                            <span class="user-email-small">pedro.santos@email.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="payment-value">R$ 99,90</td>
+                                <td>
+                                    <span class="payment-method debit">Débito</span>
+                                </td>
+                                <td>09/06/2025 19:30</td>
+                                <td>
+                                    <span class="admin-payment-status confirmed">Confirmado</span>
+                                </td>
+                                <td>
+                                    <div class="admin-action-buttons">
+                                        <button class="admin-action-btn view" title="Ver Detalhes">👁️</button>
+                                        <button class="admin-action-btn refund" title="Reembolsar">💸</button>
+                                        <button class="admin-action-btn receipt" title="Comprovante">📄</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Paginação -->
+                <div class="admin-pagination">
+                    <button class="page-btn">◀◀</button>
+                    <button class="page-btn">◀</button>
+                    <span class="page-info">Página 1 de 15 (147 registros)</span>
+                    <button class="page-btn">▶</button>
+                    <button class="page-btn">▶▶</button>
+                </div>
+                
+                <!-- Modal para detalhes do pagamento -->
+                <div id="payment-details-modal" class="payment-modal">
+                    <div class="payment-modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h4>Detalhes do Pagamento #PAY-001</h4>
+                        <div class="payment-details-grid">
+                            <div class="detail-item">
+                                <label>Usuário:</label>
+                                <span>João Silva (joao.silva@email.com)</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Valor:</label>
+                                <span>R$ 99,90</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Método:</label>
+                                <span>PIX</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Status:</label>
+                                <span class="admin-payment-status confirmed">Confirmado</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Data/Hora:</label>
+                                <span>11/06/2025 14:30:15</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>IP do Cliente:</label>
+                                <span>192.168.1.100</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>ID da Transação:</label>
+                                <span>TXN-ABC123456789</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Gateway:</label>
+                                <span>Mercado Pago</span>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="modal-btn approve">Aprovar</button>
+                            <button class="modal-btn refund">Reembolsar</button>
+                            <button class="modal-btn reject">Rejeitar</button>
+                            <button class="modal-btn cancel">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            Gestao de gastos           
+            -->
+
+            <div id="gestao_gastos" class="section">
+    <h3>Gestão de Gastos</h3>
+    <p>Controle e analise todos os gastos do sistema.</p>
+    
+    <!-- Dashboard de estatísticas -->
+    <div class="expense-dashboard">
+        <div class="expense-stat-card">
+            <h4>Gastos Hoje</h4>
+            <span class="stat-number">R$ 847,30</span>
+            <span class="stat-change positive">↗ +12%</span>
+        </div>
+        <div class="expense-stat-card">
+            <h4>Gastos Este Mês</h4>
+            <span class="stat-number">R$ 12.890,40</span>
+            <span class="stat-change negative">↘ -5%</span>
+        </div>
+        <div class="expense-stat-card">
+            <h4>Orçamento Restante</h4>
+            <span class="stat-number">R$ 7.109,60</span>
+            <span class="stat-progress">64% usado</span>
+        </div>
+        <div class="expense-stat-card">
+            <h4>Maior Gasto</h4>
+            <span class="stat-number">R$ 2.450,00</span>
+            <span class="stat-category">Infraestrutura</span>
+        </div>
+    </div>
+
+    <!-- Gráfico de tendências -->
+    <div class="expense-chart-section">
+        <h4>Tendência de Gastos (Últimos 30 dias)</h4>
+        <div class="chart-placeholder">
+            <div class="chart-bars">
+                <div class="chart-bar" style="height: 60%;" data-value="1200"></div>
+                <div class="chart-bar" style="height: 80%;" data-value="1600"></div>
+                <div class="chart-bar" style="height: 45%;" data-value="900"></div>
+                <div class="chart-bar" style="height: 90%;" data-value="1800"></div>
+                <div class="chart-bar" style="height: 70%;" data-value="1400"></div>
+                <div class="chart-bar" style="height: 85%;" data-value="1700"></div>
+                <div class="chart-bar" style="height: 95%;" data-value="1900"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtros e controles -->
+    <div class="expense-filters">
+        <div class="filter-row">
+            <input type="text" id="search-expenses" placeholder="Buscar gastos...">
+            <select id="filter-category">
+                <option value="all">Todas as Categorias</option>
+                <option value="infraestrutura">Infraestrutura</option>
+                <option value="licencas">Licenças</option>
+                <option value="apis">APIs</option>
+                <option value="marketing">Marketing</option>
+                <option value="outros">Outros</option>
+            </select>
+            <select id="filter-period">
+                <option value="today">Hoje</option>
+                <option value="week">Esta Semana</option>
+                <option value="month" selected>Este Mês</option>
+                <option value="quarter">Este Trimestre</option>
+                <option value="year">Este Ano</option>
+            </select>
+            <button class="add-expense-btn">+ Adicionar Gasto</button>
+        </div>
+    </div>
+
+    <!-- Tabela de gastos -->
+    <div class="expenses-table-container">
+        <table class="expenses-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Responsável</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12/06/2025</td>
+                    <td>Servidor AWS - Instância t3.large</td>
+                    <td><span class="category-tag infraestrutura">Infraestrutura</span></td>
+                    <td class="expense-value">R$ 450,00</td>
+                    <td>João Silva</td>
+                    <td><span class="expense-status approved">Aprovado</span></td>
+                    <td>
+                        <div class="expense-actions">
+                            <button class="action-btn view" title="Ver Detalhes">👁️</button>
+                            <button class="action-btn edit" title="Editar">✏️</button>
+                            <button class="action-btn delete" title="Excluir">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11/06/2025</td>
+                    <td>OpenAI API Credits</td>
+                    <td><span class="category-tag apis">APIs</span></td>
+                    <td class="expense-value">R$ 890,50</td>
+                    <td>Maria Souza</td>
+                    <td><span class="expense-status pending">Pendente</span></td>
+                    <td>
+                        <div class="expense-actions">
+                            <button class="action-btn view" title="Ver Detalhes">👁️</button>
+                            <button class="action-btn edit" title="Editar">✏️</button>
+                            <button class="action-btn delete" title="Excluir">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10/06/2025</td>
+                    <td>Licença Adobe Creative Suite</td>
+                    <td><span class="category-tag licencas">Licenças</span></td>
+                    <td class="expense-value">R$ 280,00</td>
+                    <td>Carlos Ferreira</td>
+                    <td><span class="expense-status approved">Aprovado</span></td>
+                    <td>
+                        <div class="expense-actions">
+                            <button class="action-btn view" title="Ver Detalhes">👁️</button>
+                            <button class="action-btn edit" title="Editar">✏️</button>
+                            <button class="action-btn delete" title="Excluir">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Orçamento por categoria -->
+    <div class="budget-overview">
+        <h4>Orçamento por Categoria</h4>
+        <div class="budget-cards">
+            <div class="budget-card">
+                <div class="budget-header">
+                    <span class="budget-category">Infraestrutura</span>
+                    <span class="budget-percentage">68%</span>
+                </div>
+                <div class="budget-bar">
+                    <div class="budget-used" style="width: 68%;"></div>
+                </div>
+                <div class="budget-values">
+                    <span>R$ 3.400 de R$ 5.000</span>
+                </div>
+            </div>
+            
+            <div class="budget-card">
+                <div class="budget-header">
+                    <span class="budget-category">APIs</span>
+                    <span class="budget-percentage">85%</span>
+                </div>
+                <div class="budget-bar">
+                    <div class="budget-used" style="width: 85%;"></div>
+                </div>
+                <div class="budget-values">
+                    <span>R$ 2.550 de R$ 3.000</span>
+                </div>
+            </div>
+            
+            <div class="budget-card">
+                <div class="budget-header">
+                    <span class="budget-category">Licenças</span>
+                    <span class="budget-percentage">42%</span>
+                </div>
+                <div class="budget-bar">
+                    <div class="budget-used" style="width: 42%;"></div>
+                </div>
+                <div class="budget-values">
+                    <span>R$ 840 de R$ 2.000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar gasto -->
+<div id="expense-modal" class="expense-modal">
+    <div class="expense-modal-content">
+        <span class="close-modal">&times;</span>
+        <h4>Adicionar Novo Gasto</h4>
+        <form id="expense-form">
+            <div class="form-group">
+                <label for="expense-description">Descrição:</label>
+                <input type="text" id="expense-description" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="expense-category">Categoria:</label>
+                <select id="expense-category" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="infraestrutura">Infraestrutura</option>
+                    <option value="licencas">Licenças</option>
+                    <option value="apis">APIs</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="expense-amount">Valor:</label>
+                <input type="number" id="expense-amount" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="expense-date">Data:</label>
+                <input type="date" id="expense-date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="expense-responsible">Responsável:</label>
+                <select id="expense-responsible" required>
+                    <option value="">Selecione um responsável</option>
+                    <option value="joao">João Silva</option>
+                    <option value="maria">Maria Souza</option>
+                    <option value="carlos">Carlos Ferreira</option>
+                </select>
+            </div>
+
+            <!-- Nova seção para gasto fixo -->
+            <div class="form-group recurring-expense-section">
+                <div class="recurring-toggle-container">
+                    <label class="recurring-toggle">
+                        <input type="checkbox" id="is-recurring">
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">Gasto Fixo Mensal</span>
+                    </label>
+                </div>
+                
+                <div class="recurring-details" id="recurring-details" style="display: none;">
+                    <div class="recurring-info">
+                        <div class="info-icon">📅</div>
+                        <div class="info-content">
+                            <p><strong>Gasto Fixo Mensal</strong></p>
+                            <p>Este gasto será automaticamente adicionado todo mês na mesma data.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="recurring-day">Dia do mês:</label>
+                            <select id="recurring-day">
+                                <option value="1">Dia 1</option>
+                                <option value="5">Dia 5</option>
+                                <option value="10">Dia 10</option>
+                                <option value="15">Dia 15</option>
+                                <option value="20">Dia 20</option>
+                                <option value="25">Dia 25</option>
+                                <option value="30">Último dia do mês</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group half-width">
+                            <label for="recurring-duration">Duração:</label>
+                            <select id="recurring-duration">
+                                <option value="indefinite">Indefinido</option>
+                                <option value="3">3 meses</option>
+                                <option value="6">6 meses</option>
+                                <option value="12">12 meses</option>
+                                <option value="24">24 meses</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recurring-next-date">Próxima cobrança:</label>
+                        <input type="date" id="recurring-next-date" readonly>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="expense-notes">Observações:</label>
+                <textarea id="expense-notes" rows="3"></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="submit" class="save-btn">Salvar</button>
+                <button type="button" class="cancel-btn">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Nova seção para gerenciar gastos fixos -->
+<div class="recurring-expenses-section">
+    <h4>Gastos Fixos Mensais</h4>
+    <p>Gerencie seus gastos recorrentes que são adicionados automaticamente todo mês.</p>
+    
+    <div class="recurring-expenses-container">
+        <div class="recurring-expenses-header">
+            <div class="recurring-stats">
+                <div class="recurring-stat">
+                    <span class="stat-label">Total Fixo/Mês:</span>
+                    <span class="stat-value" id="total-recurring">R$ 0,00</span>
+                </div>
+                <div class="recurring-stat">
+                    <span class="stat-label">Gastos Ativos:</span>
+                    <span class="stat-value" id="active-recurring">0</span>
+                </div>
+            </div>
+            <button class="add-recurring-btn" onclick="openModal()">+ Adicionar Gasto Fixo</button>
+        </div>
+        
+        <div class="recurring-expenses-list" id="recurring-expenses-list">
+            <!-- Gastos fixos serão inseridos aqui via JavaScript -->
+        </div>
+    </div>
+</div>
+</div>
+
+
+            <!--
+            Dashboard            
+            -->
+
+            <div id="dashboard" class="section">
+    <h3>Dashboard Financeiro</h3>
+    <p>Visão completa dos ganhos e gastos com análises visuais.</p>
+    
+    <!-- Resumo Executivo -->
+    <div class="dashboard-summary">
+        <div class="summary-card revenue">
+            <div class="summary-icon">💰</div>
+            <div class="summary-content">
+                <h4>Receita Total</h4>
+                <span class="summary-value" id="total-revenue">R$ 0,00</span>
+                <span class="summary-period">Este mês</span>
+            </div>
+            <div class="summary-trend positive" id="revenue-trend">
+                <span class="trend-arrow">↗</span>
+                <span class="trend-value">+12%</span>
+            </div>
+        </div>
+        
+        <div class="summary-card expenses">
+            <div class="summary-icon">💸</div>
+            <div class="summary-content">
+                <h4>Gastos Total</h4>
+                <span class="summary-value" id="total-expenses">R$ 0,00</span>
+                <span class="summary-period">Este mês</span>
+            </div>
+            <div class="summary-trend negative" id="expenses-trend">
+                <span class="trend-arrow">↘</span>
+                <span class="trend-value">-8%</span>
+            </div>
+        </div>
+        
+        <div class="summary-card profit">
+            <div class="summary-icon">📈</div>
+            <div class="summary-content">
+                <h4>Lucro Líquido</h4>
+                <span class="summary-value" id="net-profit">R$ 0,00</span>
+                <span class="summary-period">Este mês</span>
+            </div>
+            <div class="summary-trend positive" id="profit-trend">
+                <span class="trend-arrow">↗</span>
+                <span class="trend-value">+25%</span>
+            </div>
+        </div>
+        
+        <div class="summary-card margin">
+            <div class="summary-icon">📊</div>
+            <div class="summary-content">
+                <h4>Margem de Lucro</h4>
+                <span class="summary-value" id="profit-margin">0%</span>
+                <span class="summary-period">Atual</span>
+            </div>
+            <div class="summary-trend positive" id="margin-trend">
+                <span class="trend-arrow">↗</span>
+                <span class="trend-value">+3%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles do Dashboard -->
+    <div class="dashboard-controls">
+        <div class="period-selector">
+            <button class="period-btn active" data-period="7">7 dias</button>
+            <button class="period-btn" data-period="30">30 dias</button>
+            <button class="period-btn" data-period="90">3 meses</button>
+            <button class="period-btn" data-period="365">1 ano</button>
+        </div>
+        
+        <div class="dashboard-actions">
+            <button class="export-btn">📊 Exportar Relatório</button>
+            <button class="refresh-btn">🔄 Atualizar</button>
+        </div>
+    </div>
+
+    <!-- Gráficos Principais -->
+    <div class="charts-grid">
+        <!-- Gráfico de Linha - Tendências -->
+        <div class="chart-container large">
+            <div class="chart-header">
+                <h4>Tendência de Ganhos vs Gastos</h4>
+                <div class="chart-legend">
+                    <span class="legend-item revenue">
+                        <span class="legend-color"></span>
+                        Ganhos
+                    </span>
+                    <span class="legend-item expenses">
+                        <span class="legend-color"></span>
+                        Gastos
+                    </span>
+                </div>
+            </div>
+            <div class="chart-content">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Gráfico de Pizza - Categorias de Gastos -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <h4>Gastos por Categoria</h4>
+            </div>
+            <div class="chart-content">
+                <canvas id="expensePieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Gráfico de Barras - Métodos de Pagamento -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <h4>Ganhos por Método</h4>
+            </div>
+            <div class="chart-content">
+                <canvas id="paymentMethodChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Gráfico de Área - Fluxo de Caixa -->
+        <div class="chart-container large">
+            <div class="chart-header">
+                <h4>Fluxo de Caixa Acumulado</h4>
+            </div>
+            <div class="chart-content">
+                <canvas id="cashFlowChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Metas e Objetivos -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <h4>Metas do Mês</h4>
+            </div>
+            <div class="goals-content">
+                <div class="goal-item">
+                    <div class="goal-info">
+                        <span class="goal-label">Meta de Receita</span>
+                        <span class="goal-values">R$ 18.500 / R$ 25.000</span>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 74%"></div>
+                        </div>
+                        <span class="progress-percent">74%</span>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-info">
+                        <span class="goal-label">Controle de Gastos</span>
+                        <span class="goal-values">R$ 12.890 / R$ 15.000</span>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill warning" style="width: 86%"></div>
+                        </div>
+                        <span class="progress-percent">86%</span>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-info">
+                        <span class="goal-label">Margem de Lucro</span>
+                        <span class="goal-values">32% / 35%</span>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill success" style="width: 91%"></div>
+                        </div>
+                        <span class="progress-percent">91%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Performers -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <h4>Top Categorias de Gasto</h4>
+            </div>
+            <div class="top-performers">
+                <div class="performer-item">
+                    <div class="performer-rank">1</div>
+                    <div class="performer-info">
+                        <span class="performer-name">Infraestrutura</span>
+                        <span class="performer-value">R$ 4.500</span>
+                    </div>
+                    <div class="performer-bar">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="performer-item">
+                    <div class="performer-rank">2</div>
+                    <div class="performer-info">
+                        <span class="performer-name">APIs</span>
+                        <span class="performer-value">R$ 3.200</span>
+                    </div>
+                    <div class="performer-bar">
+                        <div class="bar-fill" style="width: 71%"></div>
+                    </div>
+                </div>
+                
+                <div class="performer-item">
+                    <div class="performer-rank">3</div>
+                    <div class="performer-info">
+                        <span class="performer-name">Marketing</span>
+                        <span class="performer-value">R$ 2.890</span>
+                    </div>
+                    <div class="performer-bar">
+                        <div class="bar-fill" style="width: 64%"></div>
+                    </div>
+                </div>
+                
+                <div class="performer-item">
+                    <div class="performer-rank">4</div>
+                    <div class="performer-info">
+                        <span class="performer-name">Licenças</span>
+                        <span class="performer-value">R$ 1.200</span>
+                    </div>
+                    <div class="performer-bar">
+                        <div class="bar-fill" style="width: 27%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabelas de Resumo -->
+    <div class="dashboard-tables">
+        <div class="table-container">
+            <h4>Últimas Transações</h4>
+            <div class="recent-transactions">
+                <div class="transaction-item revenue">
+                    <div class="transaction-icon">💰</div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">Pagamento PIX - João Silva</span>
+                        <span class="transaction-date">Hoje, 14:30</span>
+                    </div>
+                    <span class="transaction-amount positive">+R$ 99,90</span>
+                </div>
+                
+                <div class="transaction-item expense">
+                    <div class="transaction-icon">💸</div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">Servidor AWS</span>
+                        <span class="transaction-date">Hoje, 10:15</span>
+                    </div>
+                    <span class="transaction-amount negative">-R$ 450,00</span>
+                </div>
+                
+                <div class="transaction-item revenue">
+                    <div class="transaction-icon">💳</div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">Pagamento Cartão - Maria S.</span>
+                        <span class="transaction-date">Ontem, 16:45</span>
+                    </div>
+                    <span class="transaction-amount positive">+R$ 99,90</span>
+                </div>
+                
+                <div class="transaction-item expense">
+                    <div class="transaction-icon">🔧</div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">OpenAI API Credits</span>
+                        <span class="transaction-date">Ontem, 09:20</span>
+                    </div>
+                    <span class="transaction-amount negative">-R$ 890,50</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h4>Alertas e Notificações</h4>
+            <div class="alerts-list">
+                <div class="alert-item warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <span class="alert-title">Orçamento próximo do limite</span>
+                        <span class="alert-description">Categoria APIs: 86% do orçamento utilizado</span>
+                    </div>
+                </div>
+                
+                <div class="alert-item success">
+                    <div class="alert-icon">✅</div>
+                    <div class="alert-content">
+                        <span class="alert-title">Meta de receita em progresso</span>
+                        <span class="alert-description">74% da meta mensal alcançada</span>
+                    </div>
+                </div>
+                
+                <div class="alert-item info">
+                    <div class="alert-icon">📊</div>
+                    <div class="alert-content">
+                        <span class="alert-title">Relatório mensal disponível</span>
+                        <span class="alert-description">Dados de maio prontos para análise</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!--
+                  cache
+             -->
+
+            <div id="cache" class="section">
+                <h3>Cache</h3>
+                <p>Gerencie o cache e cookies do navegador.</p>
+                
+                <div class="cache-settings">
+                    <div class="form-group">
+                        <label for="autoClear">Limpeza automática:</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="autoClear" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="clearInterval">Intervalo de limpeza:</label>
+                        <select id="clearInterval" class="form-control">
+                            <option value="1">1 dia</option>
+                            <option value="3">3 dias</option>
+                            <option value="7" selected>7 dias</option>
+                            <option value="14">14 dias</option>
+                            <option value="30">30 dias</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Última limpeza:</label>
+                        <span id="lastClearDate">Nunca</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Próxima limpeza:</label>
+                        <span id="nextClearDate">Em 7 dias</span>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="clear-button" onclick="clearCache()">Limpar Cache</button>
+                    <button class="clear-button" onclick="clearCookies()">Limpar Cookies</button>
+                    <button class="clear-button" onclick="clearAll()">Limpar Tudo</button>
+                </div>
+            </div>
+
+            <!--
+                proxy
+            -->
+
+
+            <div id="proxy" class="section">
+                <h3>Adicionar novo Proxy</h3>
+                <p>Preencha o formulário abaixo para adicionar um novo proxy.</p>
+                
+                <form id="novo-proxy">
+                    <div class="form-group">
+                        <label for="boleto-name">Proxy:</label>
+                        <input type="text" id="boleto-name" class="form-control" placeholder="Digite ou cole o proxy aqui..." required>
+                    </div>
+                    
+                    <button class="clear-button" onclick="applySalvarProxy()">Salvar Proxy</button>
+                </form>
+                
+                <!-- Nova seção para acesso via proxy -->
+                <div class="proxy-access-section">
+                    <h3>Acessar site via Proxy</h3>
+                    <p>Selecione um proxy e insira o site que deseja acessar de forma anônima, evitando detecção de múltiplos acessos.</p>
+                    
+                    <div class="form-group">
+                        <label for="site-url">URL do site:</label>
+                        <input type="url" id="site-url" class="form-control" placeholder="https://exemplo.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="proxy-select">Selecione o Proxy:</label>
+                        <select id="proxy-select" class="form-control">
+                            <option value="">-- Selecione um Proxy --</option>
+                            <option value="proxy1">Proxy 1</option>
+                            <option value="proxy2">Proxy 2</option>
+                            <option value="proxy3">Proxy 3</option>
+                            <option value="proxy4">Proxy 4</option>
+                            <option value="proxy5">Proxy 5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="access-mode">Modo de Acesso:</label>
+                        <select id="access-mode" class="form-control">
+                            <option value="anonymous">Anônimo (sem cookies)</option>
+                            <option value="masked">Mascarado (com cookies alternativos)</option>
+                            <option value="rotated">Rotação de IP (troca periódica)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Evitar Detecção:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="prevent-fingerprinting" checked>
+                            <label for="prevent-fingerprinting">Prevenir fingerprinting do navegador</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="prevent-double-login" checked>
+                            <label for="prevent-double-login">Evitar detecção de login duplo</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="clear-headers" checked>
+                            <label for="clear-headers">Limpar cabeçalhos de identificação</label>
+                        </div>
+                    </div>
+                    
+                    <button class="access-button" onclick="accessViaSafeProxy()">Acessar via Proxy</button>
+                </div>
+                
+                <div class="ia-preview">
+                    <h4>Lista de Proxies cadastrados</h4>
+                    <div class="ia-search">
+                        <input type="text" id="buscar-ia" placeholder="Buscar Proxy..." onkeyup="filtrarProxies()">
+                        <button class="search-button" onclick="filtrarProxies()">Buscar</button>
+                    </div>
+                    
+                    <div class="ia-table-container">
+                        <table class="ia-table" id="proxy-table">
+                            <thead>
+                                <tr>
+                                    <th>Proxy</th>
+                                    <th>IA Utilizando</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Proxy 1</td>
+                                    <td>ChatGPT</td>
+                                    <td><span class="status-ativo">Em uso</span></td>
+                                    <td>
+                                        <button class="action-button edit" onclick="editProxy(this)">Editar</button>
+                                        <button class="action-button delete" onclick="deleteProxy(this)">Excluir</button>
+                                        <button class="action-button use" onclick="useProxy(this)">Usar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy 2</td>
+                                    <td>DALL-E</td>
+                                    <td><span class="status-ativo">Em uso</span></td>
+                                    <td>
+                                        <button class="action-button edit" onclick="editProxy(this)">Editar</button>
+                                        <button class="action-button delete" onclick="deleteProxy(this)">Excluir</button>
+                                        <button class="action-button use" onclick="useProxy(this)">Usar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy 3</td>
+                                    <td>Claude</td>
+                                    <td><span class="status-ativo">Em uso</span></td>
+                                    <td>
+                                        <button class="action-button edit" onclick="editProxy(this)">Editar</button>
+                                        <button class="action-button delete" onclick="deleteProxy(this)">Excluir</button>
+                                        <button class="action-button use" onclick="useProxy(this)">Usar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy 4</td>
+                                    <td>-</td>
+                                    <td><span class="status-vazio">Vazio</span></td>
+                                    <td>
+                                        <button class="action-button edit" onclick="editProxy(this)">Editar</button>
+                                        <button class="action-button delete" onclick="deleteProxy(this)">Excluir</button>
+                                        <button class="action-button use" onclick="useProxy(this)">Usar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy 5</td>
+                                    <td>Gemini</td>
+                                    <td><span class="status-ativo">Em uso</span></td>
+                                    <td>
+                                        <button class="action-button edit" onclick="editProxy(this)">Editar</button>
+                                        <button class="action-button delete" onclick="deleteProxy(this)">Excluir</button>
+                                        <button class="action-button use" onclick="useProxy(this)">Usar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                antidetecao
+            -->
+
+
+            <div id="antidetecao" class="section">
+                <h3>Antidetecção</h3>
+                <p>Configure as opções de antidetecção.</p>
+            
+                <label for="user-agent">User-Agent:</label>
+                <input type="text" id="user-agent" placeholder="Digite um novo User-Agent">
+                
+                <label for="resolution">Resolução da Tela:</label>
+                <input type="text" id="resolution" placeholder="1920x1080">
+                
+                <label for="disable-js">Desativar JavaScript:</label>
+                <input type="checkbox" id="disable-js">
+                
+                <label for="disable-webrtc">Desativar WebRTC:</label>
+                <input type="checkbox" id="disable-webrtc">
+                
+                <label for="timezone">Fuso Horário:</label>
+                <input type="text" id="timezone" placeholder="Ex: UTC-3">
+                
+                <label for="language">Idioma do Navegador:</label>
+                <input type="text" id="language" placeholder="Ex: pt-BR">
+                
+                <label for="gpu">Desativar Aceleração de GPU:</label>
+                <input type="checkbox" id="gpu">
+                
+                <label for="do-not-track">Ativar Do Not Track:</label>
+                <input type="checkbox" id="do-not-track">
+                
+                
+            </br>
+                <button class="clear-button" onclick="applyAntiDetectionSettings()">Aplicar Configurações</button>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <script src="..\js/scripts.js"></script>
+    <script src="..\js/pagamentos.js"></script>
+    <script src="..\js/perfil.js"></script>
+    <script src="..\js/nova_ia.js"></script>
+    <script src="..\js/mercadopago.js"></script>
+    <script src="..\js/boleto.js"></script>
+    <script src="..\js/proxy.js"></script>
+    <script src="..\js/senha.js"></script>
+    <script src="..\js/cache.js"></script>
+    <script src="..\js/gestao_pagamentos.js"></script>
+    <script src="..\js/gestao_gastos.js"></script>
+    <script src="..\js/dashboard.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</body>
+</html>

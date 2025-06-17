@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #register-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        #register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="login()">Entrar</button>
+        <p id="error-message" style="color: red; display: none;">Usuário ou senha incorretos!</p>
+        <div id="register-link">
+            <a href="#" onclick="register()">Não possui conta? Cadastre-se</a>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                document.getElementById("error-message").textContent = "Preencha todos os campos!";
+                document.getElementById("error-message").style.display = "block";
+                return;
+            }
+
+            // Verificar se o objeto pyQtApi existe
+            console.log("Verificando objetos da ponte...");
+            console.log("pyQtApi existe?", typeof window.pyQtApi !== 'undefined');
+            console.log("pyQtBridge existe?", typeof window.pyQtBridge !== 'undefined');
+
+            // Tentar se comunicar com o Python através da ponte JavaScript
+            try {
+                console.log("Tentando chamar pyQtApi.verifyLogin...");
+                // Chamada para o método Python que verificará no banco de dados
+                window.pyQtApi.verifyLogin(username, password);
+                console.log("Chamada realizada com sucesso");
+            } catch (e) {
+                console.error("Erro ao comunicar com o aplicativo Python:", e);
+                document.getElementById("error-message").textContent = "Erro de comunicação com o banco de dados. Tente novamente.";
+                document.getElementById("error-message").style.display = "block";
+
+                // Tentativa adicional após 1 segundo
+                setTimeout(() => {
+                    try {
+                        console.log("Tentando reconectar...");
+                        if (window.pyQtApi) {
+                            window.pyQtApi.verifyLogin(username, password);
+                        } else {
+                            console.error("pyQtApi ainda não está disponível na tentativa de reconexão");
+                        }
+                    } catch (retryError) {
+                        console.error("Erro na segunda tentativa:", retryError);
+                        document.getElementById("error-message").textContent = "Não foi possível verificar suas credenciais. Verifique sua conexão.";
+                    }
+                }, 1000);
+            }
+        }
+
+        // Função para redirecionar para a página de cadastro
+        function register() {
+            try {
+                window.pyQtApi.openRegisterPage();
+            } catch (e) {
+                console.error("Erro ao comunicar com o aplicativo Python:", e);
+                alert("Funcionalidade de cadastro não disponível no momento.");
+            }
+        }
+
+        // Função chamada pelo Python quando o login for validado
+        function loginResult(success, message, userId) {
+            if (success) {
+                localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("username", document.getElementById('username').value);
+                localStorage.setItem("userId", userId);
+                window.location.href = "painel.html";
+            } else {
+                document.getElementById("error-message").textContent = message;
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>

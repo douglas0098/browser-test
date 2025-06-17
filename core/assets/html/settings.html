@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Configurações</title>
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            background-color: #f0f0f0;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        h1 { color: #2c3e50; }
+                        .settings-container {
+                            background-color: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            max-width: 800px;
+                            margin: 0 auto;
+                        }
+                        .setting-group {
+                            margin-bottom: 20px;
+                            padding-bottom: 20px;
+                            border-bottom: 1px solid #eee;
+                        }
+                        h2 {
+                            color: #3498db;
+                            font-size: 18px;
+                        }
+                        label {
+                            display: block;
+                            margin: 10px 0 5px;
+                            font-weight: bold;
+                        }
+                        select, input {
+                            width: 100%;
+                            padding: 8px;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-bottom: 10px;
+                        }
+                        button {
+                            background-color: #3498db;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: #2980b9;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="settings-container">
+                        <h1>Configurações</h1>
+                        
+                        <div class="setting-group">
+                            <h2>Aparência</h2>
+                            <label for="theme">Tema:</label>
+                            <select id="theme">
+                                <option value="light">Claro</option>
+                                <option value="dark" selected>Escuro</option>
+                                <option value="system">Sistema</option>
+                            </select>
+                            
+                            <label for="font-size">Tamanho da fonte:</label>
+                            <select id="font-size">
+                                <option value="small">Pequeno</option>
+                                <option value="medium" selected>Médio</option>
+                                <option value="large">Grande</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <h2>Privacidade e Segurança</h2>
+                            <label>
+                                <input type="checkbox" id="do-not-track" checked> 
+                                Ativar "Não Rastrear"
+                            </label>
+                            <br>
+                            <label>
+                                <input type="checkbox" id="block-cookies"> 
+                                Bloquear cookies de terceiros
+                            </label>
+                            <br>
+                            <label>
+                                <input type="checkbox" id="block-popups" checked> 
+                                Bloquear pop-ups
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <h2>Página Inicial</h2>
+                            <label for="homepage">URL da página inicial:</label>
+                            <input type="text" id="homepage" value="file:///assets/html/painel.html">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <h2>Pesquisa</h2>
+                            <label for="search-engine">Mecanismo de pesquisa padrão:</label>
+                            <select id="search-engine">
+                                <option value="google" selected>Google</option>
+                                <option value="bing">Bing</option>
+                                <option value="duckduckgo">DuckDuckGo</option>
+                                <option value="ecosia">Ecosia</option>
+                            </select>
+                        </div>
+                        
+                        <button id="save-settings">Salvar Configurações</button>
+                    </div>
+                    
+                    <script>
+                        document.getElementById('save-settings').addEventListener('click', function() {
+                            alert('Configurações salvas com sucesso!');
+                        });
+                    </script>
+                </body>
+                </html>
