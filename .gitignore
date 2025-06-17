@@ -1,0 +1,36 @@
+# Diretórios de cache do Python
+**/__pycache__/
+**/*.py[cod]
+*.so
+
+# Arquivos de log e banco de dados temporários
+*.log
+*.sqlite3
+*.db
+
+# Arquivos do Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Diretórios de ambientes virtuais
+env/
+venv/
+ENV/
+VENV/
+.venv/
+.env/
+
+# Arquivos de configurações e metadados de IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos de backup temporários
+*~
+*.bak
+*.swp
+*.swo
