@@ -157,6 +157,9 @@ class ChromeClone(QMainWindow):
             traceback.print_exc()
             raise
     
+    # -------------------------------
+    # ⚙️ Métodos auxiliares
+    # -------------------------------
     def show_login_page(self):
         """Mostra o widget de login nativo"""
         # Criar widget de login
@@ -187,6 +190,23 @@ class ChromeClone(QMainWindow):
         # Limpar abas e adicionar widget
         self.clear_all_tabs()
         index = self.tabs.addTab(register_widget, "Criar Conta")
+        self.tabs.setCurrentIndex(index)
+    
+    def show_main_panel(self):
+        """Carrega o painel principal nativo"""
+        from core.widgets.panel_widget import PanelWidget
+        
+        # Limpar abas
+        self.clear_all_tabs()
+        
+        # Criar widget do painel
+        panel_widget = PanelWidget()
+        
+        # Conectar sinal para abrir URLs
+        panel_widget.open_url.connect(self.add_new_tab)
+        
+        # Adicionar como aba
+        index = self.tabs.addTab(panel_widget, "🏠 Painel Principal")
         self.tabs.setCurrentIndex(index)
     
     def on_login_successful(self, user_id, username):
@@ -230,24 +250,6 @@ class ChromeClone(QMainWindow):
         while self.tabs.count() > 0:
             self.tabs.removeTab(0)
     
-    def add_new_tab(self, url):
-        """Versão simplificada sem pontes JS"""
-        browser = QWebEngineView()
-        browser.setUrl(QUrl(url))
-        
-        # Conectar sinais básicos
-        browser.urlChanged.connect(
-            lambda qurl: self.url_bar.setText(qurl.toString())
-        )
-        
-        index = self.tabs.addTab(browser, self.get_translation("new_tab"))
-        self.tabs.setCurrentIndex(index)
-        
-        return browser
-
-    # -------------------------------
-    # ⚙️ Métodos auxiliares
-    # -------------------------------
     def open_login_page(self):
         """Abrir página de login"""
         login_path = os.path.join(
@@ -460,6 +462,7 @@ class ChromeClone(QMainWindow):
         if notification_data.get('title') == 'Atualização disponível':
             # Abrir página de atualizações
             pass
+
     def show_rewards_widget(self):
         """Mostra o widget de recompensas nativo"""
         from core.widgets.rewards_widget import RewardsWidget
@@ -518,7 +521,6 @@ class ChromeClone(QMainWindow):
 
         self.horizontal_layout.addWidget(self.menu_widget)
 
-
     def load_initial_page(self, url):
         if url:
             self.add_new_tab(url)
@@ -552,23 +554,27 @@ class ChromeClone(QMainWindow):
     # 📑 Abas
     # -------------------------------
     def add_new_tab(self, url):
-        """Versão super simplificada"""
+        """Cria nova aba SEM pontes JavaScript"""
         try:
             browser = QWebEngineView()
-            page = browser.page()
             
-            # Configurar WebChannel ANTES de tudo
-            channel = QWebChannel(page)
-            channel.registerObject("unifiedBridge", self.unified_bridge)
-            page.setWebChannel(channel)
+            # Conectar sinais básicos
+            browser.urlChanged.connect(
+                lambda qurl: self.url_bar.setText(qurl.toString())
+            )
             
-            # Hook para injetar script DEPOIS que página carregar
-            page.loadFinished.connect(lambda success: self.inject_minimal_bridge(page) if success else None)
+            # Atualizar título da aba quando a página carregar
+            browser.titleChanged.connect(
+                lambda title: self.tabs.setTabText(
+                    self.tabs.indexOf(browser), 
+                    title[:20] + "..." if len(title) > 20 else title
+                )
+            )
             
             # Carregar URL
             browser.setUrl(QUrl(url))
             
-            # Adicionar aba
+            # Adicionar à aba
             index = self.tabs.addTab(browser, self.get_translation("new_tab"))
             self.tabs.setCurrentIndex(index)
             
@@ -576,54 +582,10 @@ class ChromeClone(QMainWindow):
             
         except Exception as e:
             print(f"❌ Erro ao criar aba: {e}")
+            import traceback
+            traceback.print_exc()
             return None
-    
-    def inject_minimal_bridge(self, page):
-        """Injetar script mínimo com QWebChannel garantido"""
-        try:
-            print("🔧 Injetando ponte mínima...")
-            
-            # Passo 1: Garantir QWebChannel
-            qwebchannel_guarantee = '''
-                console.log("Ensuring QWebChannel...");
-                if (typeof QWebChannel === 'undefined') {
-                    console.log("Loading QWebChannel script...");
-                    var script = document.createElement('script');
-                    script.src = 'qrc:///qtwebchannel/qwebchannel.js';
-                    script.type = 'text/javascript';
-                    document.head.appendChild(script);
-                } else {
-                    console.log("QWebChannel already available");
-                }
-            '''
-            
-            page.runJavaScript(qwebchannel_guarantee)
-            
-            # Passo 2: Aguardar e carregar script principal
-            QTimer.singleShot(1000, lambda: self._inject_main_script(page))
-            
-        except Exception as e:
-            print(f"❌ Erro na injeção: {e}")
-    
-    def _inject_main_script(self, page):
-        """Carregar script principal"""
-        try:
-            script_path = os.path.join(
-                os.path.dirname(__file__), "..", "assets", "js", "minimal_bridge.js"
-            )
-            
-            if not os.path.exists(script_path):
-                print(f"❌ Script mínimo não encontrado: {script_path}")
-                return
-                
-            with open(script_path, 'r', encoding='utf-8') as f:
-                script_content = f.read()
-            
-            page.runJavaScript(script_content)
-            print("✅ Ponte mínima injetada")
-            
-        except Exception as e:
-            print(f"❌ Erro ao carregar script: {e}")
+
     
         def inject_simple_bridge(self, page):
             """Injetar script simplificado e limpo"""

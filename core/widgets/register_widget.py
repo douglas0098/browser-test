@@ -158,11 +158,11 @@ class RegisterWidget(QWidget):
         """Aplica estilos ao widget"""
         self.setStyleSheet("""
             QWidget {
-                background-color: #f0f0f0;
+                background-color: #2c3e50;
             }
             
             QLabel {
-                color: #2c3e50;
+                color: #ffffff;
                 font-size: 14px;
             }
             
