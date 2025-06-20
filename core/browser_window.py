@@ -3,13 +3,11 @@
 import os
 import traceback
 from PyQt6.QtWidgets import QDialog
-from PyQt6.QtCore import QPoint, pyqtSignal
+from PyQt6.QtCore import QPoint
 from PyQt6.QtGui import QMouseEvent
 
 from PyQt6.QtCore import Qt, QTimer, QUrl
 from PyQt6.QtGui import QAction as QActionGui
-from PyQt6.QtWebChannel import QWebChannel
-from PyQt6.QtWebEngineCore import QWebEngineProfile
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
                              QMainWindow, QMenu, QPushButton, QSizePolicy,
@@ -193,18 +191,18 @@ class ChromeClone(QMainWindow):
         self.tabs.setCurrentIndex(index)
     
     def show_main_panel(self):
-        """Carrega o painel principal nativo"""
+        """Carrega o painel principal NATIVO"""
         from core.widgets.panel_widget import PanelWidget
-        
+
         # Limpar abas
         self.clear_all_tabs()
-        
+
         # Criar widget do painel
         panel_widget = PanelWidget()
-        
-        # Conectar sinal para abrir URLs
+
+        # Conectar sinal para abrir URLs em nova aba
         panel_widget.open_url.connect(self.add_new_tab)
-        
+
         # Adicionar como aba
         index = self.tabs.addTab(panel_widget, "🏠 Painel Principal")
         self.tabs.setCurrentIndex(index)
@@ -250,6 +248,14 @@ class ChromeClone(QMainWindow):
         while self.tabs.count() > 0:
             self.tabs.removeTab(0)
     
+    def load_url_from_text(self, url):
+        """Carrega URL na aba atual"""
+        if self.tabs.currentWidget():
+            self.tabs.currentWidget().setUrl(QUrl(url))
+        else:
+            # Se não houver aba, criar uma
+            self.add_new_tab(url)
+
     def open_login_page(self):
         """Abrir página de login"""
         login_path = os.path.join(
