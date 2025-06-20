@@ -102,11 +102,13 @@ class LoginWidget(QWidget):
                 padding: 10px;
                 font-size: 14px;
                 background-color: white;
+                color: black;
             }
             
             QLineEdit:focus {
                 border-color: #3498db;
                 outline: none;
+                color: black;
             }
             
             QPushButton {

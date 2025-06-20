@@ -173,10 +173,12 @@ class RegisterWidget(QWidget):
                 font-size: 14px;
                 background-color: white;
                 min-height: 25px;
+                color: black;
             }
             
             QLineEdit:focus {
                 border-color: #3498db;
+                color: black;
             }
             
             QPushButton {

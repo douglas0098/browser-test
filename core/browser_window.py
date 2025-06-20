@@ -256,42 +256,6 @@ class ChromeClone(QMainWindow):
             # Se não houver aba, criar uma
             self.add_new_tab(url)
 
-    def open_login_page(self):
-        """Abrir página de login"""
-        login_path = os.path.join(
-            os.path.dirname(__file__), "..", "assets", "html", "login.html"
-        ).replace("\\", "/")
-
-        # Garante que existe pelo menos uma aba
-        if self.tabs.count() == 0:
-            self.add_new_tab(f"file:///{login_path}")
-        else:
-            self.load_url_from_text(f"file:///{login_path}")
-    
-    def open_register_page(self):
-        """Abrir página de registro"""
-        register_path = os.path.join(
-            os.path.dirname(__file__), "..", "assets", "html", "register.html"
-        ).replace("\\", "/")
-
-        # Garante que existe pelo menos uma aba
-        if self.tabs.count() == 0:
-            self.add_new_tab(f"file:///{register_path}")
-        else:
-            self.load_url_from_text(f"file:///{register_path}")
-    
-    def open_panel_page(self):
-        """Abrir página do painel"""
-        panel_path = os.path.join(
-            os.path.dirname(__file__), "..", "assets", "html", "painel.html"
-        ).replace("\\", "/")
-        
-        # Garante que existe pelo menos uma aba
-        if self.tabs.count() == 0:
-            self.add_new_tab(f"file:///{panel_path}")
-        else:
-            self.load_url_from_text(f"file:///{panel_path}")
-
     def setup_window(self):
         self.setWindowTitle(self.get_translation("browser_title"))
         self.setGeometry(100, 100, 1200, 800)
@@ -591,31 +555,6 @@ class ChromeClone(QMainWindow):
             import traceback
             traceback.print_exc()
             return None
-
-    
-        def inject_simple_bridge(self, page):
-            """Injetar script simplificado e limpo"""
-            try:
-                # Carregar o novo script limpo
-                script_path = os.path.join(
-                    os.path.dirname(__file__), "..", "assets", "js", "clean_bridge_loader.js"
-                )
-    
-                if not os.path.exists(script_path):
-                    print(f"❌ Script não encontrado: {script_path}")
-                    return
-    
-                with open(script_path, 'r', encoding='utf-8') as f:
-                    script_content = f.read()
-    
-                # Injetar o script
-                page.runJavaScript(script_content)
-                print("✅ Ponte unificada limpa injetada")
-    
-            except Exception as e:
-                print(f"❌ Erro ao injetar script limpo: {e}")
-                import traceback
-                traceback.print_exc()
 
     def close_tab(self, index):
         if self.tabs.count() > 1:

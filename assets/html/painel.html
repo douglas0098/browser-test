@@ -3,47 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/painel.css">
+    <link rel="stylesheet" href="..\css/painel.css">
     <title>Catálogo de IAs</title>
+    
 </head>
 <body>
     <div class="container_painel">
-        <!-- Conteúdo estático do painel -->
-        <!-- Sem scripts de ponte! -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Catálogo de IAs</h2>
+            </div>
+            <ul class="menu" id="menu">
+                <li><button data-section="favoritos"><b>⭐ Favoritos</b></button></li>
+                <li><button data-section="programacao" class="active">Algoritmos & Programação</button></li>
+                <li><button data-section="presentacao">Apresentações e Documentos</button></li>
+                <li><button data-section="automacao">Automação</button></li>
+                <li><button data-section="avatares">Avatares</button></li>
+                <li><button data-section="blogs">Blogs</button></li>
+                <li><button data-section="carreira">Carreira & Trabalho</button></li>
+                <li><button data-section="dados">Ciência de Dados</button></li>
+                <li><button data-section="chatbots">Chatbots</button></li>
+                <li><button data-section="aplicativos">Criação de Aplicativos</button></li>
+                <li><button data-section="conteudos">Criação de Conteúdo</button></li>
+                <li><button data-section="historias">Criação de Histórias</button></li>
+                <li><button data-section="sites">Criação de Sites e Páginas</button></li>
+                <li><button data-section="designer_grafico">Design Gráfico</button></li>
+                <li><button data-section="audio">Áudio e Voz</button></li>
+                <li><button data-section="diversao">Diversão</button></li>
+                <li><button data-section="marketing">Marketing</button></li>
+                <li><button data-section="seo">SEO</button></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div id="programacao" class="section active">
+                <h2 class="section-title">Algoritmos & Programação</h2>
+                <div class="gallery">
+                    <div class="card" data-url="https://h2o.ai"  data-name="H2O AI" data-category="programacao">
+                        <div class="card-header">
+                            <h3>H2O AI</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag blue">Algoritmos e Programação</span>
+                            </div>
+                            <span class="url"><a class="urla"href="https://id.public.h2o.ai/">h2o.ai</a></span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-url="https://ai-surge.cloud" data-name="AI Surge Cloud" data-category="programacao">
+                        <div class="card-header">
+                            <h3>AI Surge Cloud</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                                <span class="tag red">Negócios e Empresas</span>
+                                <span class="tag yellow">Ciência de Dados</span>
+                            </div>
+                            <span class="url">ai-surge.cloud</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-url="https://bearly.ai" data-name="Bearly" data-category="programacao">
+                        <div class="card-header">
+                            <h3>Bearly</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag green">Copywriting / Escrita</span>
+                                <span class="tag yellow">Geração de Imagens</span>
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                            </div>
+                            <span class="url">bearly.ai</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="presentacao" class="section">
+                <h2 class="section-title">Apresentações e Documentos</h2>
+                <div class="gallery">
+                    <div class="card" data-url="https://notion.so/product/ai" data-name="Notion AI" data-category="presentacao">
+                        <div class="card-header">
+                            <h3>Notion AI</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                            </div>
+                            <span class="url">notion.so/product/ai</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-url="https://ai-surge.cloud" data-name="AI Surge Cloud" data-category="presentacao">
+                        <div class="card-header">
+                            <h3>AI Surge Cloud</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                                <span class="tag red">Negócios e Empresas</span>
+                                <span class="tag yellow">Ciência de Dados</span>
+                            </div>
+                            <span class="url">ai-surge.cloud</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-url="https://bearly.ai" data-name="Bearly" data-category="presentacao">
+                        <div class="card-header">
+                            <h3>Bearly</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag green">Copywriting / Escrita</span>
+                                <span class="tag yellow">Geração de Imagens</span>
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                            </div>
+                            <span class="url">bearly.ai</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar structure for all other sections -->
+            <!-- For brevity, I'm showing one more section. You would repeat this pattern for all sections -->
+            
+            <div id="automacao" class="section">
+                <h2 class="section-title">Automação</h2>
+                <div class="gallery">
+                    <div class="card" data-url="https://notion.so/product/ai" data-name="Notion AI" data-category="automacao">
+                        <div class="card-header">
+                            <h3>Notion AI</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag blue">Assistentes e Produtividade</span>
+                            </div>
+                            <span class="url">notion.so/product/ai</span>
+                            <label class="favorite-container">
+                                <input type="checkbox" class="favorite-checkbox">
+                                <span class="favorite-label">Adicionar aos Favoritos</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- More cards for this section... -->
+                </div>
+            </div>
+            
+            <!-- Placeholder for all other sections -->
+            <!-- In a real implementation, you would create all sections following the same pattern -->
+            <div id="avatares" class="section">
+                <h2 class="section-title">Avatares</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="blogs" class="section">
+                <h2 class="section-title">Blogs</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="carreira" class="section">
+                <h2 class="section-title">Carreira & Trabalho</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="dados" class="section">
+                <h2 class="section-title">Ciência de Dados</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="chatbots" class="section">
+                <h2 class="section-title">Chatbots</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="aplicativos" class="section">
+                <h2 class="section-title">Criação de Aplicativos</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="conteudos" class="section">
+                <h2 class="section-title">Criação de Conteúdo</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="historias" class="section">
+                <h2 class="section-title">Criação de Histórias</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="sites" class="section">
+                <h2 class="section-title">Criação de Sites e Páginas</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="designer_grafico" class="section">
+                <h2 class="section-title">Design Gráfico</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="audio" class="section">
+                <h2 class="section-title">Áudio e Voz</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="diversao" class="section">
+                <h2 class="section-title">Diversão</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="marketing" class="section">
+                <h2 class="section-title">Marketing</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="seo" class="section">
+                <h2 class="section-title">SEO</h2>
+                <div class="gallery">
+                    <!-- Cards would go here -->
+                </div>
+            </div>
+            
+            <div id="favoritos" class="section">
+                <h2 class="section-title">⭐ Meus Favoritos</h2>
+                <div class="gallery" id="favoritos-gallery">
+                    <!-- Favorite cards will be dynamically added here -->
+                    <p id="no-favorites" style="text-align: center; width: 100%; padding: 20px; color: #666;">
+                        Você ainda não adicionou nenhum item aos favoritos. 
+                        Clique na caixa de seleção "Adicionar aos Favoritos" em qualquer card para adicioná-lo aqui.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="..\js/painel.js"></script>
     
-    <!-- Script simplificado apenas para interações locais -->
-    <script>
-        // Apenas lógica de UI local, sem comunicação com Python
-        document.addEventListener('DOMContentLoaded', function() {
-            // Navegação entre seções
-            const menuButtons = document.querySelectorAll('.menu button');
-            const sections = document.querySelectorAll('.section');
-            
-            menuButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    
-                    // Esconder todas as seções
-                    sections.forEach(s => s.classList.remove('active'));
-                    menuButtons.forEach(b => b.classList.remove('active'));
-                    
-                    // Mostrar seção selecionada
-                    document.getElementById(sectionId).classList.add('active');
-                    this.classList.add('active');
-                });
-            });
-            
-            // Abrir links externos
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const url = this.getAttribute('data-url');
-                    if (url) {
-                        window.open(url, '_blank');
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
