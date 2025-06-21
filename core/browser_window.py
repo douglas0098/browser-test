@@ -231,18 +231,6 @@ class ChromeClone(QMainWindow):
         # Voltar para login
         self.show_login_page()
     
-    def show_main_panel(self):
-        """Carrega o painel principal (HTML estático)"""
-        # Limpar abas
-        self.clear_all_tabs()
-        
-        # Carregar painel HTML (sem pontes JS!)
-        panel_path = os.path.join(
-            os.path.dirname(__file__), "..", "assets", "html", "painel.html"
-        ).replace("\\", "/")
-        
-        self.add_new_tab(f"file:///{panel_path}")
-    
     def clear_all_tabs(self):
         """Remove todas as abas"""
         while self.tabs.count() > 0:
@@ -297,9 +285,7 @@ class ChromeClone(QMainWindow):
             "painel.html",
         )
         painel_path = painel_path.replace("\\", "/")
-        self.home_btn.clicked.connect(
-            lambda: self.load_url_from_text(f"file:///{painel_path}")
-        )
+        self.home_btn.clicked.connect(lambda: self.show_main_panel())
 
         self.url_bar = QLineEdit()
         self.url_bar.setPlaceholderText(self.get_translation("search_placeholder"))
@@ -552,7 +538,6 @@ class ChromeClone(QMainWindow):
             
         except Exception as e:
             print(f"❌ Erro ao criar aba: {e}")
-            import traceback
             traceback.print_exc()
             return None
 
@@ -611,18 +596,10 @@ class ChromeClone(QMainWindow):
                 self.add_new_tab("about:blank")
 
     def create_new_tab_button(self):
-        """Cria um botão de nova aba para ser adicionado ao canto do widget de abas"""
-        NovaPagina = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..",
-            "assets",
-            "html",
-            "painel.html",
-        ).replace("\\", "/")
-
+        """Cria um botão de nova aba"""
         new_tab_btn = QPushButton("+")
         new_tab_btn.setToolTip(self.get_translation("new_tab"))
-        new_tab_btn.clicked.connect(lambda: self.add_new_tab(f"file:///{NovaPagina}"))
+        new_tab_btn.clicked.connect(lambda: self.add_new_tab("https://www.google.com"))
 
         # Estilo para combinar com o restante da interface
         new_tab_btn.setStyleSheet(
@@ -1051,7 +1028,3 @@ class ChromeClone(QMainWindow):
         except Exception as e:
             print(f"Erro ao abrir pop-up do tradutor: {e}")
             traceback.print_exc()
-
-
-
-   
