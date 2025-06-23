@@ -132,12 +132,10 @@ class ChromeClone(QMainWindow):
     def __init__(self, parent=None, url=None):
         try:
             super().__init__(parent)
-
             self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
 
             # Inicializar o sistema CRUD
             self.crud = crud_system
-
             if self.crud.is_connected():
                 print('✅ Sistema CRUD carregado e conectado!')
             else:
@@ -146,7 +144,6 @@ class ChromeClone(QMainWindow):
             self.current_language = "pt_BR"
             self.translations = load_translations()
             self.language_names = load_language_names()
-
             self.current_user = None
 
             self.setup_window()
@@ -253,42 +250,51 @@ class ChromeClone(QMainWindow):
     def setup_window(self):
         """Configura a janela principal com geometria segura"""
         self.setWindowTitle(self.get_translation("browser_title"))
-                
+        
         try:
             # Obter informações da tela
             screen = QApplication.primaryScreen()
             screen_geometry = screen.availableGeometry()
             
-            # Calcular tamanho seguro (80% da tela disponível)
-            safe_width = min(1200, int(screen_geometry.width() * 0.8))
-            safe_height = min(800, int(screen_geometry.height() * 0.8))
+            # 🔧 CORREÇÃO: Permitir maximização total
+            # Remover setMaximumSize() ou usar valores mais generosos
+            
+            # Definir apenas tamanho mínimo
+            self.setMinimumSize(800, 600)
+            
+            # 🔧 CORREÇÃO: Não forçar setMaximumSize específico
+            # Comentar ou remover esta linha problemática:
+            # self.setMaximumSize(screen_geometry.width(), screen_geometry.height())
+            
+            # Configurar tamanho inicial (não máximo)
+            initial_width = min(1200, int(screen_geometry.width() * 0.8))
+            initial_height = min(800, int(screen_geometry.height() * 0.8))
             
             # Garantir tamanho mínimo razoável
-            safe_width = max(safe_width, 1000)
-            safe_height = max(safe_height, 600)
+            initial_width = max(initial_width, 1000)
+            initial_height = max(initial_height, 600)
             
-            # Centralizar na tela
-            x = (screen_geometry.width() - safe_width) // 2
-            y = (screen_geometry.height() - safe_height) // 2
-            
-            # Aplicar geometria segura
-            self.setGeometry(x, y, safe_width, safe_height)
-            
-            # Definir tamanhos mínimo e máximo apropriados
-            self.setMinimumSize(800, 600)
-            self.setMaximumSize(screen_geometry.width(), screen_geometry.height())
+            # Centralizar na tela apenas se não estiver maximizada
+            if not self.isMaximized():
+                x = (screen_geometry.width() - initial_width) // 2
+                y = (screen_geometry.height() - initial_height) // 2
+                
+                # 🔧 CORREÇÃO: Usar resize() em vez de setGeometry() 
+                # para não interferir com maximização
+                self.move(x, y)
+                self.resize(initial_width, initial_height)
             
         except Exception as e:
             print(f"⚠️ Erro ao configurar geometria, usando padrão: {e}")
             # Fallback para configuração padrão
-            self.setGeometry(100, 100, 1000, 700)
             self.setMinimumSize(800, 600)
+            self.resize(1000, 700)
         
         self.setStyleSheet("background-color: #2c3e50;")
 
         # ✅ CRÍTICO: Criar o widget central e main_layout
         central_widget = QWidget()
-        self.main_layout = QVBoxLayout(central_widget)  # <- Esta linha é ESSENCIAL
+        self.main_layout = QVBoxLayout(central_widget)
         self.setCentralWidget(central_widget)
         
         print("✅ Janela configurada com main_layout criado")
@@ -374,18 +380,8 @@ class ChromeClone(QMainWindow):
 
         self.main_layout.addWidget(self.nav_bar)
 
-        if hasattr(self, 'main_layout'):
-            self.main_layout.addWidget(self.nav_bar)
-        else:
-            print("❌ ERRO: main_layout não existe em setup_navigation_bar()")
-
     def setup_tabs(self):
         self.horizontal_layout = QHBoxLayout()
-        if hasattr(self, 'main_layout'):
-            self.main_layout.addLayout(self.horizontal_layout)
-        else:
-            print("❌ ERRO: main_layout não existe em setup_tabs()")
-            return
 
         self.main_layout.addLayout(self.horizontal_layout)
 
