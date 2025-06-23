@@ -2,6 +2,10 @@
 
 import os
 import traceback
+import sys
+import ctypes
+
+from ctypes import wintypes
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtCore import QPoint
 from PyQt6.QtGui import QMouseEvent
@@ -129,6 +133,8 @@ class ChromeClone(QMainWindow):
         try:
             super().__init__(parent)
 
+            self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
+
             # Inicializar o sistema CRUD
             self.crud = crud_system
 
@@ -245,13 +251,47 @@ class ChromeClone(QMainWindow):
             self.add_new_tab(url)
 
     def setup_window(self):
+        """Configura a janela principal com geometria segura"""
         self.setWindowTitle(self.get_translation("browser_title"))
-        self.setGeometry(100, 100, 1200, 800)
+                
+        try:
+            # Obter informações da tela
+            screen = QApplication.primaryScreen()
+            screen_geometry = screen.availableGeometry()
+            
+            # Calcular tamanho seguro (80% da tela disponível)
+            safe_width = min(1200, int(screen_geometry.width() * 0.8))
+            safe_height = min(800, int(screen_geometry.height() * 0.8))
+            
+            # Garantir tamanho mínimo razoável
+            safe_width = max(safe_width, 1000)
+            safe_height = max(safe_height, 600)
+            
+            # Centralizar na tela
+            x = (screen_geometry.width() - safe_width) // 2
+            y = (screen_geometry.height() - safe_height) // 2
+            
+            # Aplicar geometria segura
+            self.setGeometry(x, y, safe_width, safe_height)
+            
+            # Definir tamanhos mínimo e máximo apropriados
+            self.setMinimumSize(800, 600)
+            self.setMaximumSize(screen_geometry.width(), screen_geometry.height())
+            
+        except Exception as e:
+            print(f"⚠️ Erro ao configurar geometria, usando padrão: {e}")
+            # Fallback para configuração padrão
+            self.setGeometry(100, 100, 1000, 700)
+            self.setMinimumSize(800, 600)
+        
         self.setStyleSheet("background-color: #2c3e50;")
 
+        # ✅ CRÍTICO: Criar o widget central e main_layout
         central_widget = QWidget()
-        self.main_layout = QVBoxLayout(central_widget)
+        self.main_layout = QVBoxLayout(central_widget)  # <- Esta linha é ESSENCIAL
         self.setCentralWidget(central_widget)
+        
+        print("✅ Janela configurada com main_layout criado")
 
     def setup_navigation_bar(self):
         self.nav_bar = QWidget()
@@ -334,8 +374,19 @@ class ChromeClone(QMainWindow):
 
         self.main_layout.addWidget(self.nav_bar)
 
+        if hasattr(self, 'main_layout'):
+            self.main_layout.addWidget(self.nav_bar)
+        else:
+            print("❌ ERRO: main_layout não existe em setup_navigation_bar()")
+
     def setup_tabs(self):
         self.horizontal_layout = QHBoxLayout()
+        if hasattr(self, 'main_layout'):
+            self.main_layout.addLayout(self.horizontal_layout)
+        else:
+            print("❌ ERRO: main_layout não existe em setup_tabs()")
+            return
+
         self.main_layout.addLayout(self.horizontal_layout)
 
         self.tabs = DraggableTabWidget()
@@ -548,41 +599,47 @@ class ChromeClone(QMainWindow):
     def detach_tab(self, index, drop_pos, web_view):
         """Cria uma nova janela quando uma aba é arrastada para fora"""
         try:
-            # Verifica se o índice é válido
+            # Verificar índice válido
             if index < 0 or index >= self.tabs.count():
                 print(f"Índice de aba inválido: {index}")
                 return
 
-            # Obtém o texto da aba
+            # Obter texto da aba
             tab_text = self.tabs.tabText(index)
 
-            # Armazena o widget da aba para não ser destruído quando removermos a aba
+            # Remover aba sem destruir o widget
             web_view = self.tabs.widget(index)
             if not web_view:
                 print("Não foi possível obter o widget da aba")
                 return
 
-            # Evita que o widget seja destruído quando a aba for removida
             web_view.setParent(None)
-
-            # Remove a aba da janela atual
             self.tabs.removeTab(index)
 
-            # Cria uma nova instância do navegador
+            # ✅ CORREÇÃO: Criar nova janela com geometria segura
             new_window = ChromeClone(None)
 
-            # Adiciona o widget da web à nova janela
+            # ✅ Aplicar tamanho seguro em vez de copiar exato
+            from PyQt6.QtWidgets import QApplication
+            
+            screen = QApplication.primaryScreen()
+            screen_geometry = screen.availableGeometry()
+            
+            # Calcular posição próxima ao drop, mas dentro da tela
+            safe_x = max(0, min(drop_pos.x() - 100, screen_geometry.width() - 800))
+            safe_y = max(0, min(drop_pos.y() - 50, screen_geometry.height() - 600))
+            
+            # Aplicar geometria segura
+            new_window.setGeometry(safe_x, safe_y, 1000, 700)
+
+            # Adicionar widget à nova janela
             new_window.add_existing_tab(web_view, tab_text)
 
-            # Posiciona a nova janela perto de onde a aba foi solta
-            new_window.move(drop_pos.x() - 100, drop_pos.y() - 50)
-            new_window.resize(self.size())  # Mantém o mesmo tamanho da janela original
-
-            # Mostra a nova janela e traz para a frente
+            # Mostrar janela
             new_window.show()
             new_window.activateWindow()
 
-            # Se não sobrou nenhuma aba na janela atual, adiciona uma aba vazia
+            # Se não sobrou nenhuma aba, adicionar aba vazia
             if self.tabs.count() == 0:
                 self.add_new_tab("about:blank")
 
@@ -590,8 +647,7 @@ class ChromeClone(QMainWindow):
 
         except Exception as e:
             print(f"Erro ao destacar aba: {e}")
-            traceback.print_exc()
-            # Garante que sempre haja uma aba disponível
+            # Garantir que sempre haja uma aba
             if self.tabs.count() == 0:
                 self.add_new_tab("about:blank")
 

@@ -16,11 +16,14 @@ class DashboardCard(QFrame):
             QFrame {{
                 background: white;
                 border-radius: 16px;
-                padding: 25px;
+                padding: 25px; 
                 border-left: 4px solid {color};
+                border: 1px solid transparent;
             }}
             QFrame:hover {{
-                transform: translateY(-8px);
+                border: 2px solid {color};
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #ffffff, stop:1 #f8f9fa);
             }}
         """)
         

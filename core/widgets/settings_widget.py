@@ -1151,7 +1151,6 @@ class SettingsWidget(QWidget):
             }
             
             QCheckBox::indicator:checked:before {
-                content: "✓";
                 color: white;
                 font-weight: bold;
             }

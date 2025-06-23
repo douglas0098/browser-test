@@ -29,11 +29,13 @@ class AIToolCard(QFrame):
                 border: 2px solid transparent;
             }
             QFrame:hover {
-                transform: translateY(-5px);
                 border-color: #3498db;
                 background-color: #f0f8ff;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 #f0f8ff, stop:1 #e6f3ff);
             }
-        """)
+            """)
+
         
         layout = QVBoxLayout()
         
